@@ -1,3 +1,4 @@
+
 # Proyecto Final de Ciclo 
 Por Jorge Álvarez Canosa
 
@@ -77,11 +78,10 @@ Se te pedirá crear un nombre de usuario y contraseña para la distribución de 
 
 Una vez configurado, puedes verificar que estás utilizando WSL 2 ejecutando:
 
-powershell
-Copiar
-Editar
+```powershell
 wsl --list --verbose
 Deberías ver tu distribución con la versión 2.
+```
 
 🛠️ Solución de Problemas Comunes
 Error al habilitar la Plataforma de Máquina Virtual: Asegúrate de que la virtualización esté habilitada en la BIOS. Consulta el manual de tu placa base o el sitio web del fabricante para obtener instrucciones específicas.
@@ -93,3 +93,12 @@ Error 0x80370102 al iniciar la distribución: Este error indica que la virtualiz
 [https://podman.io](https://podman.io)
 
 ##### 2. Una vez descargado el archivo debes ejecutarlo y seguir los pasos indicados
+
+##### 3. Creación de images
+Debes dirigirte a la parte de images en podman. 
+En este apartado puedes añadir todas las imágenes de bases de datos que necesites, en mi caso usaré postgresql.
+Debes entrar en la opción pull, escribir postgres y descargar la primera opción
+
+##### 4. Iniciar un container 
+A partir de la imagen de postgres crearemos un contenedor dandole al botón de play
+
