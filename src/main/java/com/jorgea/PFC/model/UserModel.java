@@ -1,5 +1,8 @@
 package com.jorgea.PFC.model;
 
+import jakarta.persistence.Table;
+
+@Table(name = "users")
 public class UserModel {
     private int userId;
     private String username;
