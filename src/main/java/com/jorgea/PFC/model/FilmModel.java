@@ -2,6 +2,8 @@ package com.jorgea.PFC.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "films")
 public class FilmModel {
@@ -14,6 +16,10 @@ public class FilmModel {
     private String director;
     private String releaseDate;
     private double rating;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "films")
+    private List<GenresModel> genres;
+
 
     public FilmModel(int filmId, String title, String description, String director, String releaseDate, double rating) {
         this.filmId = filmId;
