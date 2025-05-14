@@ -1,4 +1,4 @@
-package com.jorgea.PFC.mapper;
+package com.jorgea.PFC.mapperModel;
 
 import javax.annotation.processing.Generated;
 
@@ -7,5 +7,5 @@ import javax.annotation.processing.Generated;
     date = "2025-05-14T11:58:36+0200",
     comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.5 (Oracle Corporation)"
 )
-public class UserMapperImpl implements UserMapper {
+public class UserModelMapperImpl implements UserModelMapper {
 }

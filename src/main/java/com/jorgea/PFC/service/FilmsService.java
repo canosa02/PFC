@@ -2,20 +2,22 @@ package com.jorgea.PFC.service;
 
 import com.jorgea.PFC.dto.FilmsDto;
 import com.jorgea.PFC.dto.PageResponseDto;
+import com.jorgea.PFC.to.FilmsTo;
+import com.jorgea.PFC.to.PageResponseTo;
 import org.springframework.data.domain.Pageable;
 
 
 public interface FilmsService {
 
-    PageResponseDto<FilmsDto> findAllFilmsWithFilters(String title, String genreName, Pageable pageable);
+    PageResponseTo<FilmsTo> findAllFilmsWithFilters(String title, String genreName, Pageable pageable);
 
-    FilmsDto findByFilmId(Integer filmId);
+    FilmsTo findByFilmId(Integer filmId);
 
-    FilmsDto saveFilms(FilmsDto filmsDto);
+    FilmsTo saveFilms(FilmsTo filmsTo);
 
-    FilmsDto updateFilms(FilmsDto filmsDto);
+    FilmsTo updateFilms(FilmsTo filmsTo);
 
-    FilmsDto partialUpdateFiles(FilmsDto filmsDto);
+    FilmsTo partialUpdateFiles(FilmsTo filmsTo);
 
-    FilmsDto deleteFilms(FilmsDto filmsDto);
+    FilmsTo deleteFilms(FilmsTo filmsTo);
 }
