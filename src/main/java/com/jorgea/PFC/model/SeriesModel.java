@@ -85,4 +85,17 @@ public class SeriesModel {
     public void setGenres(List<GenresModel> genres) {
         this.genres = genres;
     }
+
+    @Override
+    public String toString() {
+        return "SeriesModel{" +
+                "filmId=" + filmId +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", director='" + director + '\'' +
+                ", releaseDate='" + releaseDate + '\'' +
+                ", rating=" + rating +
+                ", genres=" + genres +
+                '}';
+    }
 }

@@ -66,4 +66,14 @@ public class GenresModel {
     public void setSeries(List<SeriesModel> series) {
         this.series = series;
     }
+
+    @Override
+    public String toString() {
+        return "GenresModel{" +
+                "genresId=" + genresId +
+                ", genreName='" + genreName + '\'' +
+                ", films=" + films +
+                ", series=" + series +
+                '}';
+    }
 }
