@@ -6,7 +6,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "films")
-public class FilmModel {
+public class FilmsModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int filmId;
@@ -17,17 +17,18 @@ public class FilmModel {
     private String releaseDate;
     private double rating;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "films")
+    @ManyToMany(mappedBy = "films")
     private List<GenresModel> genres;
 
 
-    public FilmModel(int filmId, String title, String description, String director, String releaseDate, double rating) {
+    public FilmsModel(int filmId, String title, String description, String director, String releaseDate, double rating, List<GenresModel> genres) {
         this.filmId = filmId;
         this.title = title;
         this.description = description;
         this.director = director;
         this.releaseDate = releaseDate;
         this.rating = rating;
+        this.genres = genres;
     }
 
     public double getRating() {

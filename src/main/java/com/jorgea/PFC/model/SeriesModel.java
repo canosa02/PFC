@@ -2,9 +2,11 @@ package com.jorgea.PFC.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "series")
-public class SerieModel {
+public class SeriesModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int filmId;
@@ -15,13 +17,17 @@ public class SerieModel {
     private String releaseDate;
     private double rating;
 
-    public SerieModel(int filmId, String title, String description, String director, String releaseDate, double rating) {
+    @ManyToMany(mappedBy = "series")
+    private List<GenresModel> genres;
+
+    public SeriesModel(int filmId, String title, String description, String director, String releaseDate, double rating, List<GenresModel> genres) {
         this.filmId = filmId;
         this.title = title;
         this.description = description;
         this.director = director;
         this.releaseDate = releaseDate;
         this.rating = rating;
+        this.genres = genres;
     }
 
     public int getFilmId() {
@@ -70,5 +76,13 @@ public class SerieModel {
 
     public void setRating(double rating) {
         this.rating = rating;
+    }
+
+    public List<GenresModel> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(List<GenresModel> genres) {
+        this.genres = genres;
     }
 }

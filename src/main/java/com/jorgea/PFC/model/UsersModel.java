@@ -3,12 +3,12 @@ package com.jorgea.PFC.model;
 import jakarta.persistence.Table;
 
 @Table(name = "users")
-public class UserModel {
+public class UsersModel {
     private int userId;
     private String username;
     private String password;
 
-    public UserModel(int userId, String username, String password) {
+    public UsersModel(int userId, String username, String password) {
         this.userId = userId;
         this.username = username;
         this.password = password;
