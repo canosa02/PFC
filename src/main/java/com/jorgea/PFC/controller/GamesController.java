@@ -48,9 +48,9 @@ public class GamesController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/{gamesId}")
-    public ResponseEntity<GamesGenresDto> findGamesById(@PathVariable Integer gamesId) {
-        GamesGenresTo gamesGenresTo = gamesService.findByGamesId(gamesId);
+    @GetMapping("/{gameId}")
+    public ResponseEntity<GamesGenresDto> findGamesById(@PathVariable Integer gameId) {
+        GamesGenresTo gamesGenresTo = gamesService.findByGameId(gameId);
 
         return ResponseEntity.ok(gamesDtoMapper.toGamesGenresDto(gamesGenresTo));
     }

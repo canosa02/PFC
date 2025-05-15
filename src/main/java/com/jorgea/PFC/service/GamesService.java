@@ -10,7 +10,7 @@ public interface GamesService {
 
     PageResponseTo<GamesGenresTo> findAllGamesWithFilters(String title, String genreName, Pageable pageable);
 
-    GamesGenresTo findByGamesId(Integer gameId);
+    GamesGenresTo findByGameId(Integer gameId);
 
     GamesTo saveGames(GamesTo gamesTo);
 

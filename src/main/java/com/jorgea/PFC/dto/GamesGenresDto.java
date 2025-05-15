@@ -3,7 +3,7 @@ package com.jorgea.PFC.dto;
 import java.util.List;
 
 public class GamesGenresDto {
-    private Integer gamesId;
+    private Integer gameId;
     private String title;
     private String description;
     private String developer;
@@ -14,8 +14,8 @@ public class GamesGenresDto {
     public GamesGenresDto() {
     }
 
-    public GamesGenresDto(Integer gamesId, String title, String description, String developer, String releaseDate, double rating, List<GenresNameDto> genres) {
-        this.gamesId = gamesId;
+    public GamesGenresDto(Integer gameId, String title, String description, String developer, String releaseDate, double rating, List<GenresNameDto> genres) {
+        this.gameId = gameId;
         this.title = title;
         this.description = description;
         this.developer = developer;
@@ -24,12 +24,12 @@ public class GamesGenresDto {
         this.genres = genres;
     }
 
-    public Integer getGamesId() {
-        return gamesId;
+    public Integer getGameId() {
+        return gameId;
     }
 
-    public void setGamesId(Integer gamesId) {
-        this.gamesId = gamesId;
+    public void setGameId(Integer gameId) {
+        this.gameId = gameId;
     }
 
     public String getTitle() {

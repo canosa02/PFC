@@ -78,7 +78,7 @@ public class GamesServiceImpl implements GamesService {
     }
 
     @Override
-    public GamesGenresTo findByGamesId(@PathVariable Integer gameId) {
+    public GamesGenresTo findByGameId(@PathVariable Integer gameId) {
 
         Optional<GamesModel> gamesModel = gamesRepository.findById(gameId);
 
