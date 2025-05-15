@@ -1,29 +1,20 @@
-package com.jorgea.PFC.model;
-
-import jakarta.persistence.*;
+package com.jorgea.PFC.dto;
 
 import java.util.List;
 
-@Entity
-@Table(name = "series")
-public class SeriesModel {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int filmId;
-
+public class FilmsGenresDto {
+    private Integer filmId;
     private String title;
     private String description;
     private String director;
     private String releaseDate;
     private double rating;
+    private List<GenresNameDto> genres;
 
-    @ManyToMany(mappedBy = "series")
-    private List<GenresModel> genres;
-
-    public SeriesModel() {
+    public FilmsGenresDto() {
     }
 
-    public SeriesModel(int filmId, String title, String description, String director, String releaseDate, double rating, List<GenresModel> genres) {
+    public FilmsGenresDto(Integer filmId, String title, String description, String director, String releaseDate, double rating, List<GenresNameDto> genres) {
         this.filmId = filmId;
         this.title = title;
         this.description = description;
@@ -33,11 +24,11 @@ public class SeriesModel {
         this.genres = genres;
     }
 
-    public int getFilmId() {
+    public Integer getFilmId() {
         return filmId;
     }
 
-    public void setFilmId(int filmId) {
+    public void setFilmId(Integer filmId) {
         this.filmId = filmId;
     }
 
@@ -81,24 +72,14 @@ public class SeriesModel {
         this.rating = rating;
     }
 
-    public List<GenresModel> getGenres() {
+    public List<GenresNameDto> getGenres() {
         return genres;
     }
 
-    public void setGenres(List<GenresModel> genres) {
+    public void setGenres(List<GenresNameDto> genres) {
         this.genres = genres;
     }
 
-    @Override
-    public String toString() {
-        return "SeriesModel{" +
-                "filmId=" + filmId +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", director='" + director + '\'' +
-                ", releaseDate='" + releaseDate + '\'' +
-                ", rating=" + rating +
-                ", genres=" + genres +
-                '}';
-    }
+
+
 }

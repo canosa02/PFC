@@ -9,6 +9,7 @@ import java.util.List;
 public class GenresModel {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int genresId;
     private String genreName;
 
@@ -28,11 +29,12 @@ public class GenresModel {
     )
     private List<SeriesModel> series;
 
-    public GenresModel(int genresId, String genreName, List<FilmsModel> films, List<SeriesModel> series) {
-        this.genresId = genresId;
+    public GenresModel() {
+    }
+
+    public GenresModel(String genreName, List<FilmsModel> films) {
         this.genreName = genreName;
         this.films = films;
-        this.series = series;
     }
 
     public int getGenresId() {

@@ -6,19 +6,59 @@ import com.jorgea.PFC.dto.SeriesDto;
 import com.jorgea.PFC.model.FilmsModel;
 import com.jorgea.PFC.model.GenresModel;
 import com.jorgea.PFC.model.SeriesModel;
+import com.jorgea.PFC.to.FilmsTo;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
+import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-05-14T11:58:36+0200",
+    date = "2025-05-15T17:10:05+0200",
     comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.5 (Oracle Corporation)"
 )
+@Component
 public class FilmsModelMapperImpl implements FilmsModelMapper {
 
     @Override
-    public FilmsDto toFilmsDto(FilmsModel filmsModel) {
+    public FilmsTo toFilmsTo(FilmsModel filmsModel) {
+        if ( filmsModel == null ) {
+            return null;
+        }
+
+        FilmsTo filmsTo = new FilmsTo();
+
+        filmsTo.setFilmId( filmsModel.getFilmId() );
+        filmsTo.setTitle( filmsModel.getTitle() );
+        filmsTo.setDescription( filmsModel.getDescription() );
+        filmsTo.setDirector( filmsModel.getDirector() );
+        filmsTo.setReleaseDate( filmsModel.getReleaseDate() );
+        filmsTo.setRating( filmsModel.getRating() );
+        filmsTo.setGenres( genresModelListToGenresDtoList( filmsModel.getGenres() ) );
+
+        return filmsTo;
+    }
+
+    @Override
+    public FilmsModel toFilmsModel(FilmsTo filmsTo) {
+        if ( filmsTo == null ) {
+            return null;
+        }
+
+        FilmsModel filmsModel = new FilmsModel();
+
+        filmsModel.setFilmId( filmsTo.getFilmId() );
+        filmsModel.setTitle( filmsTo.getTitle() );
+        filmsModel.setDescription( filmsTo.getDescription() );
+        filmsModel.setDirector( filmsTo.getDirector() );
+        filmsModel.setReleaseDate( filmsTo.getReleaseDate() );
+        filmsModel.setRating( filmsTo.getRating() );
+        filmsModel.setGenres( genresDtoListToGenresModelList( filmsTo.getGenres() ) );
+
+        return filmsModel;
+    }
+
+    protected FilmsDto filmsModelToFilmsDto(FilmsModel filmsModel) {
         if ( filmsModel == null ) {
             return null;
         }
@@ -36,33 +76,6 @@ public class FilmsModelMapperImpl implements FilmsModelMapper {
         return filmsDto;
     }
 
-    @Override
-    public FilmsModel toFilmsModel(FilmsDto filmsDto) {
-        if ( filmsDto == null ) {
-            return null;
-        }
-
-        Integer filmId = null;
-        String title = null;
-        String description = null;
-        String director = null;
-        String releaseDate = null;
-        double rating = 0.0d;
-        List<GenresModel> genres = null;
-
-        filmId = filmsDto.getFilmId();
-        title = filmsDto.getTitle();
-        description = filmsDto.getDescription();
-        director = filmsDto.getDirector();
-        releaseDate = filmsDto.getReleaseDate();
-        rating = filmsDto.getRating();
-        genres = genresDtoListToGenresModelList( filmsDto.getGenres() );
-
-        FilmsModel filmsModel = new FilmsModel( filmId, title, description, director, releaseDate, rating, genres );
-
-        return filmsModel;
-    }
-
     protected List<FilmsDto> filmsModelListToFilmsDtoList(List<FilmsModel> list) {
         if ( list == null ) {
             return null;
@@ -70,7 +83,7 @@ public class FilmsModelMapperImpl implements FilmsModelMapper {
 
         List<FilmsDto> list1 = new ArrayList<FilmsDto>( list.size() );
         for ( FilmsModel filmsModel : list ) {
-            list1.add( toFilmsDto( filmsModel ) );
+            list1.add( filmsModelToFilmsDto( filmsModel ) );
         }
 
         return list1;
@@ -138,6 +151,24 @@ public class FilmsModelMapperImpl implements FilmsModelMapper {
         return list1;
     }
 
+    protected FilmsModel filmsDtoToFilmsModel(FilmsDto filmsDto) {
+        if ( filmsDto == null ) {
+            return null;
+        }
+
+        FilmsModel filmsModel = new FilmsModel();
+
+        filmsModel.setFilmId( filmsDto.getFilmId() );
+        filmsModel.setTitle( filmsDto.getTitle() );
+        filmsModel.setDescription( filmsDto.getDescription() );
+        filmsModel.setDirector( filmsDto.getDirector() );
+        filmsModel.setReleaseDate( filmsDto.getReleaseDate() );
+        filmsModel.setRating( filmsDto.getRating() );
+        filmsModel.setGenres( genresDtoListToGenresModelList( filmsDto.getGenres() ) );
+
+        return filmsModel;
+    }
+
     protected List<FilmsModel> filmsDtoListToFilmsModelList(List<FilmsDto> list) {
         if ( list == null ) {
             return null;
@@ -145,7 +176,7 @@ public class FilmsModelMapperImpl implements FilmsModelMapper {
 
         List<FilmsModel> list1 = new ArrayList<FilmsModel>( list.size() );
         for ( FilmsDto filmsDto : list ) {
-            list1.add( toFilmsModel( filmsDto ) );
+            list1.add( filmsDtoToFilmsModel( filmsDto ) );
         }
 
         return list1;
@@ -156,26 +187,18 @@ public class FilmsModelMapperImpl implements FilmsModelMapper {
             return null;
         }
 
-        int filmId = 0;
-        String title = null;
-        String description = null;
-        String director = null;
-        String releaseDate = null;
-        double rating = 0.0d;
-        List<GenresModel> genres = null;
+        SeriesModel seriesModel = new SeriesModel();
 
-        filmId = seriesDto.getFilmId();
-        title = seriesDto.getTitle();
-        description = seriesDto.getDescription();
-        director = seriesDto.getDirector();
-        releaseDate = seriesDto.getReleaseDate();
-        rating = seriesDto.getRating();
+        seriesModel.setFilmId( seriesDto.getFilmId() );
+        seriesModel.setTitle( seriesDto.getTitle() );
+        seriesModel.setDescription( seriesDto.getDescription() );
+        seriesModel.setDirector( seriesDto.getDirector() );
+        seriesModel.setReleaseDate( seriesDto.getReleaseDate() );
+        seriesModel.setRating( seriesDto.getRating() );
         List<GenresModel> list = seriesDto.getGenres();
         if ( list != null ) {
-            genres = new ArrayList<GenresModel>( list );
+            seriesModel.setGenres( new ArrayList<GenresModel>( list ) );
         }
-
-        SeriesModel seriesModel = new SeriesModel( filmId, title, description, director, releaseDate, rating, genres );
 
         return seriesModel;
     }
@@ -198,17 +221,12 @@ public class FilmsModelMapperImpl implements FilmsModelMapper {
             return null;
         }
 
-        int genresId = 0;
-        String genreName = null;
-        List<FilmsModel> films = null;
-        List<SeriesModel> series = null;
+        GenresModel genresModel = new GenresModel();
 
-        genresId = genresDto.getGenresId();
-        genreName = genresDto.getGenreName();
-        films = filmsDtoListToFilmsModelList( genresDto.getFilms() );
-        series = seriesDtoListToSeriesModelList( genresDto.getSeries() );
-
-        GenresModel genresModel = new GenresModel( genresId, genreName, films, series );
+        genresModel.setGenresId( genresDto.getGenresId() );
+        genresModel.setGenreName( genresDto.getGenreName() );
+        genresModel.setFilms( filmsDtoListToFilmsModelList( genresDto.getFilms() ) );
+        genresModel.setSeries( seriesDtoListToSeriesModelList( genresDto.getSeries() ) );
 
         return genresModel;
     }

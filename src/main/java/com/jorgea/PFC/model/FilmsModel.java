@@ -20,6 +20,8 @@ public class FilmsModel {
     @ManyToMany(mappedBy = "films")
     private List<GenresModel> genres;
 
+    public FilmsModel() {
+    }
 
     public FilmsModel(Integer filmId, String title, String description, String director, String releaseDate, double rating, List<GenresModel> genres) {
         this.filmId = filmId;

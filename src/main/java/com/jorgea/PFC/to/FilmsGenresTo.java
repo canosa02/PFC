@@ -1,29 +1,20 @@
-package com.jorgea.PFC.model;
-
-import jakarta.persistence.*;
+package com.jorgea.PFC.to;
 
 import java.util.List;
 
-@Entity
-@Table(name = "series")
-public class SeriesModel {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int filmId;
-
+public class FilmsGenresTo {
+    private Integer filmId;
     private String title;
     private String description;
     private String director;
     private String releaseDate;
     private double rating;
+    private List<GenresNameTo> genres;
 
-    @ManyToMany(mappedBy = "series")
-    private List<GenresModel> genres;
-
-    public SeriesModel() {
+    public FilmsGenresTo() {
     }
 
-    public SeriesModel(int filmId, String title, String description, String director, String releaseDate, double rating, List<GenresModel> genres) {
+    public FilmsGenresTo(Integer filmId, String title, String description, String director, String releaseDate, double rating, List<GenresNameTo> genres) {
         this.filmId = filmId;
         this.title = title;
         this.description = description;
@@ -33,11 +24,11 @@ public class SeriesModel {
         this.genres = genres;
     }
 
-    public int getFilmId() {
+    public Integer getFilmId() {
         return filmId;
     }
 
-    public void setFilmId(int filmId) {
+    public void setFilmId(Integer filmId) {
         this.filmId = filmId;
     }
 
@@ -81,17 +72,17 @@ public class SeriesModel {
         this.rating = rating;
     }
 
-    public List<GenresModel> getGenres() {
+    public List<GenresNameTo> getGenres() {
         return genres;
     }
 
-    public void setGenres(List<GenresModel> genres) {
+    public void setGenres(List<GenresNameTo> genres) {
         this.genres = genres;
     }
 
     @Override
     public String toString() {
-        return "SeriesModel{" +
+        return "FilmsGenresTo{" +
                 "filmId=" + filmId +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
