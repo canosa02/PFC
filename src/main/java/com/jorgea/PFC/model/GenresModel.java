@@ -1,7 +1,14 @@
 package com.jorgea.PFC.model;
 
-import jakarta.persistence.*;
-
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.Id;
 import java.util.List;
 
 @Entity
@@ -15,26 +22,18 @@ public class GenresModel {
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
-            name = "film_genre",
+            name = "game_genre",
             joinColumns = @JoinColumn(name = "genre_id"),
-            inverseJoinColumns = @JoinColumn(name = "film_id")
+            inverseJoinColumns = @JoinColumn(name = "game_id")
     )
-    private List<FilmsModel> films;
-
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(
-            name = "serie_genre",
-            joinColumns = @JoinColumn(name = "genre_id"),
-            inverseJoinColumns = @JoinColumn(name = "serie_id")
-    )
-    private List<SeriesModel> series;
+    private List<GamesModel> games;
 
     public GenresModel() {
     }
 
-    public GenresModel(String genreName, List<FilmsModel> films) {
+    public GenresModel(String genreName, List<GamesModel> games) {
         this.genreName = genreName;
-        this.films = films;
+        this.games = games;
     }
 
     public int getGenresId() {
@@ -53,20 +52,12 @@ public class GenresModel {
         this.genreName = genreName;
     }
 
-    public List<FilmsModel> getFilms() {
-        return films;
+    public List<GamesModel> getGames() {
+        return games;
     }
 
-    public void setFilms(List<FilmsModel> films) {
-        this.films = films;
-    }
-
-    public List<SeriesModel> getSeries() {
-        return series;
-    }
-
-    public void setSeries(List<SeriesModel> series) {
-        this.series = series;
+    public void setGames(List<GamesModel> games) {
+        this.games = games;
     }
 
     @Override
@@ -74,8 +65,7 @@ public class GenresModel {
         return "GenresModel{" +
                 "genresId=" + genresId +
                 ", genreName='" + genreName + '\'' +
-                ", films=" + films +
-                ", series=" + series +
+                ", games=" + games +
                 '}';
     }
 }

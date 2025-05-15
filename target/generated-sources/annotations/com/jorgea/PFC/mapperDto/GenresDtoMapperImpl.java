@@ -1,8 +1,7 @@
 package com.jorgea.PFC.mapperDto;
 
-import com.jorgea.PFC.dto.FilmsDto;
+import com.jorgea.PFC.dto.GamesDto;
 import com.jorgea.PFC.dto.GenresDto;
-import com.jorgea.PFC.dto.SeriesDto;
 import com.jorgea.PFC.to.GenresTo;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-05-15T17:10:05+0200",
+    date = "2025-05-15T20:06:13+0200",
     comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.5 (Oracle Corporation)"
 )
 @Component
@@ -27,13 +26,9 @@ public class GenresDtoMapperImpl implements GenresDtoMapper {
 
         genresTo.setGenresId( genresDto.getGenresId() );
         genresTo.setGenreName( genresDto.getGenreName() );
-        List<FilmsDto> list = genresDto.getFilms();
+        List<GamesDto> list = genresDto.getGames();
         if ( list != null ) {
-            genresTo.setFilms( new ArrayList<FilmsDto>( list ) );
-        }
-        List<SeriesDto> list1 = genresDto.getSeries();
-        if ( list1 != null ) {
-            genresTo.setSeries( new ArrayList<SeriesDto>( list1 ) );
+            genresTo.setGames( new ArrayList<GamesDto>( list ) );
         }
 
         return genresTo;
@@ -49,13 +44,9 @@ public class GenresDtoMapperImpl implements GenresDtoMapper {
 
         genresDto.setGenresId( genresTo.getGenresId() );
         genresDto.setGenreName( genresTo.getGenreName() );
-        List<FilmsDto> list = genresTo.getFilms();
+        List<GamesDto> list = genresTo.getGames();
         if ( list != null ) {
-            genresDto.setFilms( new ArrayList<FilmsDto>( list ) );
-        }
-        List<SeriesDto> list1 = genresTo.getSeries();
-        if ( list1 != null ) {
-            genresDto.setSeries( new ArrayList<SeriesDto>( list1 ) );
+            genresDto.setGames( new ArrayList<GamesDto>( list ) );
         }
 
         return genresDto;

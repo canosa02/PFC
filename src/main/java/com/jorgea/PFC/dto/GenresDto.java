@@ -1,24 +1,19 @@
 package com.jorgea.PFC.dto;
 
-import com.jorgea.PFC.model.FilmsModel;
-import com.jorgea.PFC.model.SeriesModel;
-
 import java.util.List;
 
 public class GenresDto {
     private int genresId;
     private String genreName;
-    private List<FilmsDto> films;
-    private List<SeriesDto> series;
+    private List<GamesDto> games;
 
     public GenresDto() {
     }
 
-    public GenresDto(int genresId, String genreName, List<FilmsDto> films, List<SeriesDto> series) {
+    public GenresDto(int genresId, String genreName, List<GamesDto> games) {
         this.genresId = genresId;
         this.genreName = genreName;
-        this.films = films;
-        this.series = series;
+        this.games = games;
     }
 
     public int getGenresId() {
@@ -37,19 +32,12 @@ public class GenresDto {
         this.genreName = genreName;
     }
 
-    public List<FilmsDto> getFilms() {
-        return films;
+    public List<GamesDto> getGames() {
+        return games;
     }
 
-    public void setFilms(List<FilmsDto> films) {
-        this.films = films;
+    public void setGames(List<GamesDto> games) {
+        this.games = games;
     }
 
-    public List<SeriesDto> getSeries() {
-        return series;
-    }
-
-    public void setSeries(List<SeriesDto> series) {
-        this.series = series;
-    }
 }

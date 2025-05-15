@@ -5,6 +5,7 @@ public class GenresNameDto {
 
     public GenresNameDto() {
     }
+
     public GenresNameDto(String name) {
         this.name = name;
     }
