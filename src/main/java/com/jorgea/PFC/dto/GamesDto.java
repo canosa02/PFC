@@ -6,7 +6,7 @@ public class GamesDto {
     private Integer gameId;
     private String title;
     private String description;
-    private String director;
+    private String developer;
     private String releaseDate;
     private double rating;
     private List<GenresDto> genres;
@@ -14,11 +14,11 @@ public class GamesDto {
     public GamesDto() {
     }
 
-    public GamesDto(Integer gameId, String title, String description, String director, String releaseDate, double rating, List<GenresDto> genres) {
+    public GamesDto(Integer gameId, String title, String description, String developer, String releaseDate, double rating, List<GenresDto> genres) {
         this.gameId = gameId;
         this.title = title;
         this.description = description;
-        this.director = director;
+        this.developer = developer;
         this.releaseDate = releaseDate;
         this.rating = rating;
         this.genres = genres;
@@ -48,12 +48,12 @@ public class GamesDto {
         this.description = description;
     }
 
-    public String getDirector() {
-        return director;
+    public String getDeveloper() {
+        return developer;
     }
 
-    public void setDirector(String director) {
-        this.director = director;
+    public void setDeveloper(String developer) {
+        this.developer = developer;
     }
 
     public String getReleaseDate() {
