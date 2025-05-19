@@ -13,7 +13,7 @@ public interface GamesService {
 
     GamesGenresTo findByGameId(Integer gameId);
 
-    GamesTo saveGames(SaveGamesTo saveGamesTo);
+    GamesGenresTo saveGames(SaveGamesTo saveGamesTo);
 
     GamesTo updateGames(GamesTo gamesTo);
 

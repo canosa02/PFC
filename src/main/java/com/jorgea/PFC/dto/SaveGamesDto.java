@@ -8,9 +8,16 @@ public class SaveGamesDto {
     private String developer;
     private String releaseDate;
     private double rating;
-    private List<GenresNameDto> genres;
 
     public SaveGamesDto() {
+    }
+
+    public SaveGamesDto(String title, String description, String developer, String releaseDate, double rating) {
+        this.title = title;
+        this.description = description;
+        this.developer = developer;
+        this.releaseDate = releaseDate;
+        this.rating = rating;
     }
 
     public String getTitle() {
@@ -53,11 +60,4 @@ public class SaveGamesDto {
         this.rating = rating;
     }
 
-    public List<GenresNameDto> getGenres() {
-        return genres;
-    }
-
-    public void setGenres(List<GenresNameDto> genres) {
-        this.genres = genres;
-    }
 }

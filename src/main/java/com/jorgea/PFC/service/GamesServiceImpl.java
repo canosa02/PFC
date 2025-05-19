@@ -68,7 +68,7 @@ public class GamesServiceImpl implements GamesService {
         }
         return new PageResponseTo<>(
                 gamesGenresTos,
-                gamesModels.getNumber() + 1,
+                gamesModels.getPageable().getPageNumber() + 1,
                 gamesModels.getTotalPages()
         );
     }
@@ -104,12 +104,12 @@ public class GamesServiceImpl implements GamesService {
     }
 
     @Override
-    public GamesTo saveGames(SaveGamesTo saveGamesTo) {
+    public GamesGenresTo saveGames(SaveGamesTo saveGamesTo) {
         GamesModel gamesModel = gamesModelMapper.toGamesModel(saveGamesTo);
 
         GamesModel savedGame = gamesRepository.save(gamesModel);
 
-        return gamesModelMapper.toGamesTo(savedGame);
+        return gamesModelMapper.toGamesGenresTo(savedGame);
     }
 
     @Override

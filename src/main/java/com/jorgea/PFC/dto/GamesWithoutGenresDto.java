@@ -1,19 +1,16 @@
-package com.jorgea.PFC.to;
+package com.jorgea.PFC.dto;
 
-
-import java.util.List;
-
-public class SaveGamesTo {
+public class GamesWithoutGenresDto {
     private String title;
     private String description;
     private String developer;
     private String releaseDate;
     private double rating;
 
-    public SaveGamesTo() {
+    public GamesWithoutGenresDto() {
     }
 
-    public SaveGamesTo(String title, String description, String developer, String releaseDate, double rating) {
+    public GamesWithoutGenresDto(String title, String description, String developer, String releaseDate, double rating) {
         this.title = title;
         this.description = description;
         this.developer = developer;
@@ -60,5 +57,4 @@ public class SaveGamesTo {
     public void setRating(double rating) {
         this.rating = rating;
     }
-
 }
