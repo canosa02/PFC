@@ -4,10 +4,10 @@ import java.util.List;
 
 public class PageResponseTo<T> {
     private List<T> content;
-    private long currentPage;
+    private int currentPage;
     private int totalPages;
 
-    public PageResponseTo(List<T> content, long currentPage, int totalPages) {
+    public PageResponseTo(List<T> content, int currentPage, int totalPages) {
         this.content = content;
         this.currentPage = currentPage;
         this.totalPages = totalPages;
@@ -25,7 +25,7 @@ public class PageResponseTo<T> {
         return currentPage;
     }
 
-    public void setCurrentPage(long currentPage) {
+    public void setCurrentPage(int currentPage) {
         this.currentPage = currentPage;
     }
 

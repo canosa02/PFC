@@ -4,12 +4,9 @@ import com.jorgea.PFC.exception.InstanceNotFoundException;
 import com.jorgea.PFC.model.GamesModel;
 import com.jorgea.PFC.model.GenresModel;
 import com.jorgea.PFC.specification.GamesSpecification;
-import com.jorgea.PFC.to.GamesGenresTo;
-import com.jorgea.PFC.to.GamesTo;
+import com.jorgea.PFC.to.*;
 import com.jorgea.PFC.mapperModel.GamesModelMapper;
 import com.jorgea.PFC.repository.GamesRepository;
-import com.jorgea.PFC.to.GenresNameTo;
-import com.jorgea.PFC.to.PageResponseTo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -71,7 +68,7 @@ public class GamesServiceImpl implements GamesService {
         }
         return new PageResponseTo<>(
                 gamesGenresTos,
-                gamesModels.getNumber(),
+                gamesModels.getNumber() + 1,
                 gamesModels.getTotalPages()
         );
     }
@@ -107,10 +104,12 @@ public class GamesServiceImpl implements GamesService {
     }
 
     @Override
-    public GamesTo saveGames(GamesTo gamesTo) {
+    public GamesTo saveGames(SaveGamesTo saveGamesTo) {
+        GamesModel gamesModel = gamesModelMapper.toGamesModel(saveGamesTo);
 
+        GamesModel savedGame = gamesRepository.save(gamesModel);
 
-        return null;
+        return gamesModelMapper.toGamesTo(savedGame);
     }
 
     @Override
