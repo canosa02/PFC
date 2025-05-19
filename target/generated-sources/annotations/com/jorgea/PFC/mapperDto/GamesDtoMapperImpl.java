@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-05-15T20:57:27+0200",
+    date = "2025-05-16T14:31:01+0200",
     comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.5 (Oracle Corporation)"
 )
 @Component
@@ -31,6 +31,7 @@ public class GamesDtoMapperImpl implements GamesDtoMapper {
         gamesDto.setGameId( gamesTo.getGameId() );
         gamesDto.setTitle( gamesTo.getTitle() );
         gamesDto.setDescription( gamesTo.getDescription() );
+        gamesDto.setDeveloper( gamesTo.getDeveloper() );
         gamesDto.setReleaseDate( gamesTo.getReleaseDate() );
         gamesDto.setRating( gamesTo.getRating() );
         List<GenresDto> list = gamesTo.getGenres();
@@ -52,6 +53,7 @@ public class GamesDtoMapperImpl implements GamesDtoMapper {
         gamesTo.setGameId( gamesDto.getGameId() );
         gamesTo.setTitle( gamesDto.getTitle() );
         gamesTo.setDescription( gamesDto.getDescription() );
+        gamesTo.setDeveloper( gamesDto.getDeveloper() );
         gamesTo.setReleaseDate( gamesDto.getReleaseDate() );
         gamesTo.setRating( gamesDto.getRating() );
         List<GenresDto> list = gamesDto.getGenres();
