@@ -12,6 +12,8 @@ public interface GamesService {
 
     GamesWithoutGenresTo saveGames(GamesPostTo gamesPostTo);
 
+    GamesGenresTo addGenresToGames(Integer gameId, Integer genreId);
+
     GamesWithoutGenresTo updateGames(Integer gameId, GamesPutTo gamesPutTo);
 
     GamesWithoutGenresTo partialUpdateGames(Integer gameId, GamesPatchTo gamesPatchTo);

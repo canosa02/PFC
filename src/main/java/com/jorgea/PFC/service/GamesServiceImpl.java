@@ -1,10 +1,12 @@
 package com.jorgea.PFC.service;
 
+import com.jorgea.PFC.exception.ConflictException;
 import com.jorgea.PFC.exception.InstanceNotFoundException;
 import com.jorgea.PFC.mapperModel.GamesModelMapper;
 import com.jorgea.PFC.model.GamesModel;
 import com.jorgea.PFC.model.GenresModel;
 import com.jorgea.PFC.repository.GamesRepository;
+import com.jorgea.PFC.repository.GenresRepository;
 import com.jorgea.PFC.specification.GamesSpecification;
 import com.jorgea.PFC.to.*;
 import org.springframework.data.domain.Page;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.management.InstanceAlreadyExistsException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -24,10 +27,13 @@ public class GamesServiceImpl implements GamesService {
 
     private final GamesRepository gamesRepository;
 
+    private final GenresRepository genresRepository;
+
     private final GamesModelMapper gamesModelMapper;
 
-    public GamesServiceImpl(GamesRepository gamesRepository, GamesModelMapper gamesModelMapper) {
+    public GamesServiceImpl(GamesRepository gamesRepository, GenresRepository genresRepository, GamesModelMapper gamesModelMapper) {
         this.gamesRepository = gamesRepository;
+        this.genresRepository = genresRepository;
         this.gamesModelMapper = gamesModelMapper;
     }
 
@@ -110,6 +116,74 @@ public class GamesServiceImpl implements GamesService {
         GamesModel savedGame = gamesRepository.save(gamesModel);
 
         return gamesModelMapper.toGamesWithoutGenresTo(savedGame);
+    }
+
+    @Override
+    public GamesGenresTo addGenresToGames(Integer gameId, Integer genreId){
+        Optional<GamesModel> gamesModelOptional = gamesRepository.findById(gameId);
+        Optional<GenresModel> genresModelOptional = genresRepository.findById(genreId);
+
+        if(gamesModelOptional.isEmpty() || genresModelOptional.isEmpty()){
+            throw new InstanceNotFoundException();
+        }
+
+        GamesModel gamesModel = gamesModelOptional.get();
+        GenresModel genresModel = genresModelOptional.get();
+
+
+       if(gamesModel.getGenres() == null){
+           gamesModel.setGenres(new ArrayList<>());
+       }
+
+       if(genresModel.getGames() == null){
+           genresModel.setGames(new ArrayList<>());
+       }
+
+       boolean genreExists = false;
+       for (GenresModel genre : gamesModel.getGenres()) {
+           if(genre.getGenresId() == genresModel.getGenresId()){
+               genreExists = true;
+               break;
+           }
+       }
+
+       if(!genreExists){
+           gamesModel.getGenres().add(genresModel);
+       } else {
+           throw new ConflictException("The genre already exists");
+       }
+
+        boolean gameExists = false;
+        for (GenresModel genre : gamesModel.getGenres()) {
+            if(genre.getGenresId() == genresModel.getGenresId()){
+                gameExists = true;
+                break;
+            }
+        }
+
+        if(!gameExists){
+            genresModel.getGames().add(gamesModel);
+        }
+
+        genresModel = genresRepository.save(genresModel);
+        gamesModel = gamesRepository.save(gamesModel);
+
+        GamesGenresTo gamesGenresTo = new GamesGenresTo();
+        gamesGenresTo.setGameId(gamesModel.getGameId());
+        gamesGenresTo.setTitle(gamesModel.getTitle());
+        gamesGenresTo.setDescription(gamesModel.getDescription());
+        gamesGenresTo.setDeveloper(gamesModel.getDeveloper());
+        gamesGenresTo.setReleaseDate(gamesModel.getReleaseDate());
+        gamesGenresTo.setRating(gamesModel.getRating());
+
+        List<GenresNameTo> genresNameTos = new ArrayList<>();
+
+        for (GenresModel genre : gamesModel.getGenres()) {
+            genresNameTos.add(new GenresNameTo(genre.getGenreName()));
+        }
+        gamesGenresTo.setGenres(genresNameTos);
+
+        return gamesGenresTo;
     }
 
     @Override

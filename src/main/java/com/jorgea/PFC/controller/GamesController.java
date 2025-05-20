@@ -4,10 +4,12 @@ import com.jorgea.PFC.dto.*;
 import com.jorgea.PFC.mapperDto.GamesDtoMapper;
 import com.jorgea.PFC.service.GamesService;
 import com.jorgea.PFC.to.*;
+import jakarta.validation.Path;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -60,7 +62,16 @@ public class GamesController {
 
         GamesWithoutGenresTo gamesWithoutGenresTo = gamesService.saveGames(gamesPostTo);
 
-        return ResponseEntity.ok(gamesDtoMapper.toGamesWithoutGenresDto(gamesWithoutGenresTo));
+        return ResponseEntity.status(HttpStatus.CREATED).body(gamesDtoMapper.toGamesWithoutGenresDto(gamesWithoutGenresTo));
+    }
+
+    @PostMapping("/{gameId}/genres/{genreId}")
+    public ResponseEntity<GamesGenresDto> addGenresToGames (@PathVariable Integer gameId, @PathVariable Integer genreId){
+        GamesGenresTo gamesGenresTo = gamesService.addGenresToGames(gameId, genreId);
+
+        GamesGenresDto gamesGenresDto = gamesDtoMapper.toGamesGenresDto(gamesGenresTo);
+
+        return ResponseEntity.ok(gamesGenresDto);
     }
 
     @PutMapping("/{gameId}")
