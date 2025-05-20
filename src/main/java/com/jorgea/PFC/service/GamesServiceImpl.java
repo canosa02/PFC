@@ -164,7 +164,15 @@ public class GamesServiceImpl implements GamesService {
     }
 
     @Override
-    public GamesTo deleteGames(GamesTo gamesTo) {
-        return null;
+    public void deleteGames(Integer gameId) {
+        Optional<GamesModel> gamesModelOptional = gamesRepository.findById(gameId);
+
+        if (gamesModelOptional.isEmpty()) {
+            throw new InstanceNotFoundException();
+        }
+
+        GamesModel gamesModel = gamesModelOptional.get();
+
+        gamesRepository.delete(gamesModel);
     }
 }

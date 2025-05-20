@@ -81,4 +81,11 @@ public class GamesController {
         return ResponseEntity.ok(gamesDtoMapper.toGamesWithoutGenresDto(gamesWithoutGenresTo));
     }
 
+    @DeleteMapping("/{gameId}")
+    public ResponseEntity<Void> deleteGames(@PathVariable Integer gameId){
+        gamesService.deleteGames(gameId);
+
+        return ResponseEntity.ok().build();
+    }
+
 }
