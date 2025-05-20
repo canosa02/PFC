@@ -1,16 +1,16 @@
-package com.jorgea.PFC.to;
+package com.jorgea.PFC.dto;
 
-public class GamesPutTo {
+public class GamesPutDto {
     private String title;
     private String description;
     private String developer;
     private String releaseDate;
     private double rating;
 
-    public GamesPutTo() {
+    public GamesPutDto() {
     }
 
-    public GamesPutTo(String title, String description, String developer, String releaseDate, double rating) {
+    public GamesPutDto(String title, String description, String developer, String releaseDate, double rating) {
         this.title = title;
         this.description = description;
         this.developer = developer;
