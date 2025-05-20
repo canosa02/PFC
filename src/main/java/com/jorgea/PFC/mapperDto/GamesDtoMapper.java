@@ -19,4 +19,6 @@ public interface GamesDtoMapper {
 
     GamesPutTo toGamesPutTo(GamesPutDto gamesPutDto);
 
+    GamesPatchTo toGamesPatchTo(GamesPatchDto gamesPatchDto);
+
 }

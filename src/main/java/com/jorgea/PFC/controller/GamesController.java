@@ -72,4 +72,13 @@ public class GamesController {
         return ResponseEntity.ok(gamesDtoMapper.toGamesWithoutGenresDto(gamesWithoutGenresTo));
     }
 
+    @PatchMapping("/{gameId}")
+    public ResponseEntity<GamesWithoutGenresDto> partialUpdateGames(@PathVariable Integer gameId, @Valid @RequestBody GamesPatchDto gamesPatchDto){
+        GamesPatchTo gamesPatchTo = gamesDtoMapper.toGamesPatchTo(gamesPatchDto);
+
+        GamesWithoutGenresTo gamesWithoutGenresTo = gamesService.partialUpdateGames(gameId, gamesPatchTo);
+
+        return ResponseEntity.ok(gamesDtoMapper.toGamesWithoutGenresDto(gamesWithoutGenresTo));
+    }
+
 }

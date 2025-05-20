@@ -1,12 +1,12 @@
 package com.jorgea.PFC.service;
 
 import com.jorgea.PFC.exception.InstanceNotFoundException;
+import com.jorgea.PFC.mapperModel.GamesModelMapper;
 import com.jorgea.PFC.model.GamesModel;
 import com.jorgea.PFC.model.GenresModel;
+import com.jorgea.PFC.repository.GamesRepository;
 import com.jorgea.PFC.specification.GamesSpecification;
 import com.jorgea.PFC.to.*;
-import com.jorgea.PFC.mapperModel.GamesModelMapper;
-import com.jorgea.PFC.repository.GamesRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -51,7 +51,7 @@ public class GamesServiceImpl implements GamesService {
         for (GamesModel gamesModel : gamesModels.getContent()) {
             List<GenresNameTo> genresNameTos = new ArrayList<>();
 
-            if(gamesModel.getGenres() != null){
+            if (gamesModel.getGenres() != null) {
                 for (GenresModel genresModel : gamesModel.getGenres()) {
                     genresNameTos.add(new GenresNameTo(genresModel.getGenreName()));
                 }
@@ -116,7 +116,7 @@ public class GamesServiceImpl implements GamesService {
     public GamesWithoutGenresTo updateGames(Integer gameId, GamesPutTo gamesPutTo) {
         Optional<GamesModel> gamesModelOptional = gamesRepository.findById(gameId);
 
-        if(gamesModelOptional.isEmpty()){
+        if (gamesModelOptional.isEmpty()) {
             throw new InstanceNotFoundException();
         }
 
@@ -131,8 +131,36 @@ public class GamesServiceImpl implements GamesService {
     }
 
     @Override
-    public GamesTo partialUpdateGames(GamesTo gamesTo) {
-        return null;
+    public GamesWithoutGenresTo partialUpdateGames(Integer gameId, GamesPatchTo gamesPatchTo) {
+        Optional<GamesModel> gamesModelOptional = gamesRepository.findById(gameId);
+
+        if (gamesModelOptional.isEmpty()) {
+            throw new InstanceNotFoundException();
+        }
+
+        GamesModel gamesModel = gamesModelOptional.get();
+
+        if (gamesPatchTo.getTitle() != null && !gamesPatchTo.getTitle().isBlank()) {
+            gamesModel.setTitle(gamesPatchTo.getTitle());
+        }
+
+        if (gamesPatchTo.getDescription() != null && !gamesPatchTo.getDescription().isBlank()){
+            gamesModel.setDescription(gamesPatchTo.getDescription());
+        }
+
+        if (gamesPatchTo.getDeveloper() != null && !gamesPatchTo.getDeveloper().isBlank()){
+            gamesModel.setDeveloper(gamesPatchTo.getDeveloper());
+        }
+
+        if (gamesPatchTo.getReleaseDate() != null && !gamesPatchTo.getReleaseDate().isBlank()){
+            gamesModel.setReleaseDate(gamesPatchTo.getReleaseDate());
+        }
+
+        if (gamesPatchTo.getRating() != 0){
+            gamesModel.setRating(gamesPatchTo.getRating());
+        }
+
+        return gamesModelMapper.toGamesWithoutGenresTo(gamesModel);
     }
 
     @Override
