@@ -3,6 +3,7 @@ package com.jorgea.PFC.mapperModel;
 import com.jorgea.PFC.model.GamesModel;
 import com.jorgea.PFC.model.GenresModel;
 import com.jorgea.PFC.to.GamesGenresTo;
+import com.jorgea.PFC.to.GamesWithoutGenresTo;
 import com.jorgea.PFC.to.GenresNameTo;
 import com.jorgea.PFC.to.SaveGamesTo;
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-05-19T10:22:24+0200",
+    date = "2025-05-19T12:01:58+0200",
     comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.5 (Oracle Corporation)"
 )
 @Component
@@ -38,6 +39,24 @@ public class GamesModelMapperImpl implements GamesModelMapper {
     }
 
     @Override
+    public GamesWithoutGenresTo toGamesWithoutGenresTo(GamesModel gamesModel) {
+        if ( gamesModel == null ) {
+            return null;
+        }
+
+        GamesWithoutGenresTo gamesWithoutGenresTo = new GamesWithoutGenresTo();
+
+        gamesWithoutGenresTo.setGameId( gamesModel.getGameId() );
+        gamesWithoutGenresTo.setTitle( gamesModel.getTitle() );
+        gamesWithoutGenresTo.setDescription( gamesModel.getDescription() );
+        gamesWithoutGenresTo.setDeveloper( gamesModel.getDeveloper() );
+        gamesWithoutGenresTo.setReleaseDate( gamesModel.getReleaseDate() );
+        gamesWithoutGenresTo.setRating( gamesModel.getRating() );
+
+        return gamesWithoutGenresTo;
+    }
+
+    @Override
     public GamesModel toGamesModel(SaveGamesTo saveGamesTo) {
         if ( saveGamesTo == null ) {
             return null;
@@ -50,7 +69,6 @@ public class GamesModelMapperImpl implements GamesModelMapper {
         gamesModel.setDeveloper( saveGamesTo.getDeveloper() );
         gamesModel.setReleaseDate( saveGamesTo.getReleaseDate() );
         gamesModel.setRating( saveGamesTo.getRating() );
-        gamesModel.setGenres( genresNameToListToGenresModelList( saveGamesTo.getGenres() ) );
 
         return gamesModel;
     }
@@ -73,29 +91,6 @@ public class GamesModelMapperImpl implements GamesModelMapper {
         List<GenresNameTo> list1 = new ArrayList<GenresNameTo>( list.size() );
         for ( GenresModel genresModel : list ) {
             list1.add( genresModelToGenresNameTo( genresModel ) );
-        }
-
-        return list1;
-    }
-
-    protected GenresModel genresNameToToGenresModel(GenresNameTo genresNameTo) {
-        if ( genresNameTo == null ) {
-            return null;
-        }
-
-        GenresModel genresModel = new GenresModel();
-
-        return genresModel;
-    }
-
-    protected List<GenresModel> genresNameToListToGenresModelList(List<GenresNameTo> list) {
-        if ( list == null ) {
-            return null;
-        }
-
-        List<GenresModel> list1 = new ArrayList<GenresModel>( list.size() );
-        for ( GenresNameTo genresNameTo : list ) {
-            list1.add( genresNameToToGenresModel( genresNameTo ) );
         }
 
         return list1;

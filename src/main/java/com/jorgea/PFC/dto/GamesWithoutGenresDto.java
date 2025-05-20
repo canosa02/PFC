@@ -1,6 +1,7 @@
 package com.jorgea.PFC.dto;
 
 public class GamesWithoutGenresDto {
+    private Integer gameId;
     private String title;
     private String description;
     private String developer;
@@ -10,12 +11,21 @@ public class GamesWithoutGenresDto {
     public GamesWithoutGenresDto() {
     }
 
-    public GamesWithoutGenresDto(String title, String description, String developer, String releaseDate, double rating) {
+    public GamesWithoutGenresDto(Integer gameId, String title, String description, String developer, String releaseDate, double rating) {
+        this.gameId = gameId;
         this.title = title;
         this.description = description;
         this.developer = developer;
         this.releaseDate = releaseDate;
         this.rating = rating;
+    }
+
+    public Integer getGameId() {
+        return gameId;
+    }
+
+    public void setGameId(Integer gameId) {
+        this.gameId = gameId;
     }
 
     public String getTitle() {

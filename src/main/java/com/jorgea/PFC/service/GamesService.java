@@ -1,9 +1,6 @@
 package com.jorgea.PFC.service;
 
-import com.jorgea.PFC.to.GamesGenresTo;
-import com.jorgea.PFC.to.GamesTo;
-import com.jorgea.PFC.to.PageResponseTo;
-import com.jorgea.PFC.to.SaveGamesTo;
+import com.jorgea.PFC.to.*;
 import org.springframework.data.domain.Pageable;
 
 
@@ -13,7 +10,7 @@ public interface GamesService {
 
     GamesGenresTo findByGameId(Integer gameId);
 
-    GamesGenresTo saveGames(SaveGamesTo saveGamesTo);
+    GamesWithoutGenresTo saveGames(SaveGamesTo saveGamesTo);
 
     GamesTo updateGames(GamesTo gamesTo);
 

@@ -2,11 +2,13 @@ package com.jorgea.PFC.mapperDto;
 
 import com.jorgea.PFC.dto.GamesDto;
 import com.jorgea.PFC.dto.GamesGenresDto;
+import com.jorgea.PFC.dto.GamesWithoutGenresDto;
 import com.jorgea.PFC.dto.GenresDto;
 import com.jorgea.PFC.dto.GenresNameDto;
 import com.jorgea.PFC.dto.SaveGamesDto;
 import com.jorgea.PFC.to.GamesGenresTo;
 import com.jorgea.PFC.to.GamesTo;
+import com.jorgea.PFC.to.GamesWithoutGenresTo;
 import com.jorgea.PFC.to.GenresNameTo;
 import com.jorgea.PFC.to.SaveGamesTo;
 import java.util.ArrayList;
@@ -16,7 +18,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-05-19T10:22:24+0200",
+    date = "2025-05-19T12:01:58+0200",
     comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.5 (Oracle Corporation)"
 )
 @Component
@@ -98,9 +100,26 @@ public class GamesDtoMapperImpl implements GamesDtoMapper {
         saveGamesTo.setDeveloper( saveGamesDto.getDeveloper() );
         saveGamesTo.setReleaseDate( saveGamesDto.getReleaseDate() );
         saveGamesTo.setRating( saveGamesDto.getRating() );
-        saveGamesTo.setGenres( genresNameDtoListToGenresNameToList( saveGamesDto.getGenres() ) );
 
         return saveGamesTo;
+    }
+
+    @Override
+    public GamesWithoutGenresDto toGamesWithoutGenresDto(GamesWithoutGenresTo gamesWithoutGenresTo) {
+        if ( gamesWithoutGenresTo == null ) {
+            return null;
+        }
+
+        GamesWithoutGenresDto gamesWithoutGenresDto = new GamesWithoutGenresDto();
+
+        gamesWithoutGenresDto.setGameId( gamesWithoutGenresTo.getGameId() );
+        gamesWithoutGenresDto.setTitle( gamesWithoutGenresTo.getTitle() );
+        gamesWithoutGenresDto.setDescription( gamesWithoutGenresTo.getDescription() );
+        gamesWithoutGenresDto.setDeveloper( gamesWithoutGenresTo.getDeveloper() );
+        gamesWithoutGenresDto.setReleaseDate( gamesWithoutGenresTo.getReleaseDate() );
+        gamesWithoutGenresDto.setRating( gamesWithoutGenresTo.getRating() );
+
+        return gamesWithoutGenresDto;
     }
 
     protected GenresNameDto genresNameToToGenresNameDto(GenresNameTo genresNameTo) {
@@ -123,31 +142,6 @@ public class GamesDtoMapperImpl implements GamesDtoMapper {
         List<GenresNameDto> list1 = new ArrayList<GenresNameDto>( list.size() );
         for ( GenresNameTo genresNameTo : list ) {
             list1.add( genresNameToToGenresNameDto( genresNameTo ) );
-        }
-
-        return list1;
-    }
-
-    protected GenresNameTo genresNameDtoToGenresNameTo(GenresNameDto genresNameDto) {
-        if ( genresNameDto == null ) {
-            return null;
-        }
-
-        GenresNameTo genresNameTo = new GenresNameTo();
-
-        genresNameTo.setName( genresNameDto.getName() );
-
-        return genresNameTo;
-    }
-
-    protected List<GenresNameTo> genresNameDtoListToGenresNameToList(List<GenresNameDto> list) {
-        if ( list == null ) {
-            return null;
-        }
-
-        List<GenresNameTo> list1 = new ArrayList<GenresNameTo>( list.size() );
-        for ( GenresNameDto genresNameDto : list ) {
-            list1.add( genresNameDtoToGenresNameTo( genresNameDto ) );
         }
 
         return list1;

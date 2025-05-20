@@ -1,15 +1,9 @@
 package com.jorgea.PFC.controller;
 
-import com.jorgea.PFC.dto.GamesDto;
-import com.jorgea.PFC.dto.GamesGenresDto;
-import com.jorgea.PFC.dto.PageResponseDto;
-import com.jorgea.PFC.dto.SaveGamesDto;
+import com.jorgea.PFC.dto.*;
 import com.jorgea.PFC.mapperDto.GamesDtoMapper;
 import com.jorgea.PFC.service.GamesService;
-import com.jorgea.PFC.to.GamesGenresTo;
-import com.jorgea.PFC.to.GamesTo;
-import com.jorgea.PFC.to.PageResponseTo;
-import com.jorgea.PFC.to.SaveGamesTo;
+import com.jorgea.PFC.to.*;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -61,12 +55,12 @@ public class GamesController {
     }
 
     @PostMapping("")
-    public ResponseEntity<GamesGenresDto> saveGames (@Valid @RequestBody SaveGamesDto saveGamesDto){
+    public ResponseEntity<GamesWithoutGenresDto> saveGames (@Valid @RequestBody SaveGamesDto saveGamesDto){
         SaveGamesTo saveGamesTo = gamesDtoMapper.toSaveGamesTo(saveGamesDto);
 
-        GamesGenresTo gamesGenresTo = gamesService.saveGames(saveGamesTo);
+        GamesWithoutGenresTo gamesWithoutGenresTo = gamesService.saveGames(saveGamesTo);
 
-        return ResponseEntity.ok(gamesDtoMapper.toGamesGenresDto(gamesGenresTo));
+        return ResponseEntity.ok(gamesDtoMapper.toGamesWithoutGenresDto(gamesWithoutGenresTo));
     }
 
 }
