@@ -55,10 +55,10 @@ public class GamesController {
     }
 
     @PostMapping("")
-    public ResponseEntity<GamesWithoutGenresDto> saveGames (@Valid @RequestBody SaveGamesDto saveGamesDto){
-        SaveGamesTo saveGamesTo = gamesDtoMapper.toSaveGamesTo(saveGamesDto);
+    public ResponseEntity<GamesWithoutGenresDto> saveGames (@Valid @RequestBody GamesPostDto gamesPostDto){
+        GamesPostTo gamesPostTo = gamesDtoMapper.toSaveGamesTo(gamesPostDto);
 
-        GamesWithoutGenresTo gamesWithoutGenresTo = gamesService.saveGames(saveGamesTo);
+        GamesWithoutGenresTo gamesWithoutGenresTo = gamesService.saveGames(gamesPostTo);
 
         return ResponseEntity.ok(gamesDtoMapper.toGamesWithoutGenresDto(gamesWithoutGenresTo));
     }

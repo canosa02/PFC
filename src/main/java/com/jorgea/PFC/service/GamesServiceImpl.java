@@ -1,6 +1,5 @@
 package com.jorgea.PFC.service;
 
-import com.jorgea.PFC.dto.GamesWithoutGenresDto;
 import com.jorgea.PFC.exception.InstanceNotFoundException;
 import com.jorgea.PFC.model.GamesModel;
 import com.jorgea.PFC.model.GenresModel;
@@ -105,8 +104,8 @@ public class GamesServiceImpl implements GamesService {
     }
 
     @Override
-    public GamesWithoutGenresTo saveGames(SaveGamesTo saveGamesTo) {
-        GamesModel gamesModel = gamesModelMapper.toGamesModel(saveGamesTo);
+    public GamesWithoutGenresTo saveGames(GamesPostTo gamesPostTo) {
+        GamesModel gamesModel = gamesModelMapper.toGamesModel(gamesPostTo);
 
         GamesModel savedGame = gamesRepository.save(gamesModel);
 
@@ -114,7 +113,8 @@ public class GamesServiceImpl implements GamesService {
     }
 
     @Override
-    public GamesTo updateGames(GamesTo gamesTo) {
+    public GamesWithoutGenresTo updateGames(GamesPutTo gamesPutTo) {
+
         return null;
     }
 

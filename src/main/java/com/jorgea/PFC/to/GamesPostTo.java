@@ -1,19 +1,17 @@
 package com.jorgea.PFC.to;
 
 
-import java.util.List;
-
-public class SaveGamesTo {
+public class GamesPostTo {
     private String title;
     private String description;
     private String developer;
     private String releaseDate;
     private double rating;
 
-    public SaveGamesTo() {
+    public GamesPostTo() {
     }
 
-    public SaveGamesTo(String title, String description, String developer, String releaseDate, double rating) {
+    public GamesPostTo(String title, String description, String developer, String releaseDate, double rating) {
         this.title = title;
         this.description = description;
         this.developer = developer;

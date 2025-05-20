@@ -3,9 +3,10 @@ package com.jorgea.PFC.mapperModel;
 import com.jorgea.PFC.model.GamesModel;
 import com.jorgea.PFC.model.GenresModel;
 import com.jorgea.PFC.to.GamesGenresTo;
+import com.jorgea.PFC.to.GamesPostTo;
 import com.jorgea.PFC.to.GamesWithoutGenresTo;
 import com.jorgea.PFC.to.GenresNameTo;
-import com.jorgea.PFC.to.SaveGamesTo;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-05-19T12:01:58+0200",
+    date = "2025-05-20T08:45:32+0200",
     comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.5 (Oracle Corporation)"
 )
 @Component
@@ -57,18 +58,18 @@ public class GamesModelMapperImpl implements GamesModelMapper {
     }
 
     @Override
-    public GamesModel toGamesModel(SaveGamesTo saveGamesTo) {
-        if ( saveGamesTo == null ) {
+    public GamesModel toGamesModel(GamesPostTo gamesPostTo) {
+        if ( gamesPostTo == null ) {
             return null;
         }
 
         GamesModel gamesModel = new GamesModel();
 
-        gamesModel.setTitle( saveGamesTo.getTitle() );
-        gamesModel.setDescription( saveGamesTo.getDescription() );
-        gamesModel.setDeveloper( saveGamesTo.getDeveloper() );
-        gamesModel.setReleaseDate( saveGamesTo.getReleaseDate() );
-        gamesModel.setRating( saveGamesTo.getRating() );
+        gamesModel.setTitle( gamesPostTo.getTitle() );
+        gamesModel.setDescription( gamesPostTo.getDescription() );
+        gamesModel.setDeveloper( gamesPostTo.getDeveloper() );
+        gamesModel.setReleaseDate( gamesPostTo.getReleaseDate() );
+        gamesModel.setRating( gamesPostTo.getRating() );
 
         return gamesModel;
     }

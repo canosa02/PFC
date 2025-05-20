@@ -5,12 +5,9 @@ import com.jorgea.PFC.dto.GamesGenresDto;
 import com.jorgea.PFC.dto.GamesWithoutGenresDto;
 import com.jorgea.PFC.dto.GenresDto;
 import com.jorgea.PFC.dto.GenresNameDto;
-import com.jorgea.PFC.dto.SaveGamesDto;
-import com.jorgea.PFC.to.GamesGenresTo;
-import com.jorgea.PFC.to.GamesTo;
-import com.jorgea.PFC.to.GamesWithoutGenresTo;
-import com.jorgea.PFC.to.GenresNameTo;
-import com.jorgea.PFC.to.SaveGamesTo;
+import com.jorgea.PFC.dto.GamesPostDto;
+import com.jorgea.PFC.to.*;
+import com.jorgea.PFC.to.GamesPostTo;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
@@ -18,7 +15,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-05-19T12:01:58+0200",
+    date = "2025-05-20T08:45:32+0200",
     comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.5 (Oracle Corporation)"
 )
 @Component
@@ -88,20 +85,20 @@ public class GamesDtoMapperImpl implements GamesDtoMapper {
     }
 
     @Override
-    public SaveGamesTo toSaveGamesTo(SaveGamesDto saveGamesDto) {
-        if ( saveGamesDto == null ) {
+    public GamesPostTo toSaveGamesTo(GamesPostDto gamesPostDto) {
+        if ( gamesPostDto == null ) {
             return null;
         }
 
-        SaveGamesTo saveGamesTo = new SaveGamesTo();
+        GamesPostTo gamesPostTo = new GamesPostTo();
 
-        saveGamesTo.setTitle( saveGamesDto.getTitle() );
-        saveGamesTo.setDescription( saveGamesDto.getDescription() );
-        saveGamesTo.setDeveloper( saveGamesDto.getDeveloper() );
-        saveGamesTo.setReleaseDate( saveGamesDto.getReleaseDate() );
-        saveGamesTo.setRating( saveGamesDto.getRating() );
+        gamesPostTo.setTitle( gamesPostDto.getTitle() );
+        gamesPostTo.setDescription( gamesPostDto.getDescription() );
+        gamesPostTo.setDeveloper( gamesPostDto.getDeveloper() );
+        gamesPostTo.setReleaseDate( gamesPostDto.getReleaseDate() );
+        gamesPostTo.setRating( gamesPostDto.getRating() );
 
-        return saveGamesTo;
+        return gamesPostTo;
     }
 
     @Override

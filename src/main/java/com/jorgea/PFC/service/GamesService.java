@@ -10,9 +10,9 @@ public interface GamesService {
 
     GamesGenresTo findByGameId(Integer gameId);
 
-    GamesWithoutGenresTo saveGames(SaveGamesTo saveGamesTo);
+    GamesWithoutGenresTo saveGames(GamesPostTo gamesPostTo);
 
-    GamesTo updateGames(GamesTo gamesTo);
+    GamesWithoutGenresTo updateGames(GamesPutTo gamesPutTo);
 
     GamesTo partialUpdateGames(GamesTo gamesTo);
 
