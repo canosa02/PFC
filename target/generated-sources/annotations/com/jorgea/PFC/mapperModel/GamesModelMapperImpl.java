@@ -6,7 +6,6 @@ import com.jorgea.PFC.to.GamesGenresTo;
 import com.jorgea.PFC.to.GamesPostTo;
 import com.jorgea.PFC.to.GamesWithoutGenresTo;
 import com.jorgea.PFC.to.GenresNameTo;
-
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
@@ -14,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-05-20T08:45:32+0200",
+    date = "2025-05-20T12:37:40+0200",
     comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.5 (Oracle Corporation)"
 )
 @Component

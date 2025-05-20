@@ -12,7 +12,7 @@ public interface GamesService {
 
     GamesWithoutGenresTo saveGames(GamesPostTo gamesPostTo);
 
-    GamesWithoutGenresTo updateGames(GamesPutTo gamesPutTo);
+    GamesWithoutGenresTo updateGames(Integer gameId, GamesPutTo gamesPutTo);
 
     GamesTo partialUpdateGames(GamesTo gamesTo);
 

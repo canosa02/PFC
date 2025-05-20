@@ -2,12 +2,17 @@ package com.jorgea.PFC.mapperDto;
 
 import com.jorgea.PFC.dto.GamesDto;
 import com.jorgea.PFC.dto.GamesGenresDto;
+import com.jorgea.PFC.dto.GamesPostDto;
+import com.jorgea.PFC.dto.GamesPutDto;
 import com.jorgea.PFC.dto.GamesWithoutGenresDto;
 import com.jorgea.PFC.dto.GenresDto;
 import com.jorgea.PFC.dto.GenresNameDto;
-import com.jorgea.PFC.dto.GamesPostDto;
-import com.jorgea.PFC.to.*;
+import com.jorgea.PFC.to.GamesGenresTo;
 import com.jorgea.PFC.to.GamesPostTo;
+import com.jorgea.PFC.to.GamesPutTo;
+import com.jorgea.PFC.to.GamesTo;
+import com.jorgea.PFC.to.GamesWithoutGenresTo;
+import com.jorgea.PFC.to.GenresNameTo;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
@@ -15,7 +20,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-05-20T08:45:32+0200",
+    date = "2025-05-20T12:37:40+0200",
     comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.5 (Oracle Corporation)"
 )
 @Component
@@ -85,7 +90,7 @@ public class GamesDtoMapperImpl implements GamesDtoMapper {
     }
 
     @Override
-    public GamesPostTo toSaveGamesTo(GamesPostDto gamesPostDto) {
+    public GamesPostTo toGamesPostTo(GamesPostDto gamesPostDto) {
         if ( gamesPostDto == null ) {
             return null;
         }
@@ -117,6 +122,23 @@ public class GamesDtoMapperImpl implements GamesDtoMapper {
         gamesWithoutGenresDto.setRating( gamesWithoutGenresTo.getRating() );
 
         return gamesWithoutGenresDto;
+    }
+
+    @Override
+    public GamesPutTo toGamesPutTo(GamesPutDto gamesPutDto) {
+        if ( gamesPutDto == null ) {
+            return null;
+        }
+
+        GamesPutTo gamesPutTo = new GamesPutTo();
+
+        gamesPutTo.setTitle( gamesPutDto.getTitle() );
+        gamesPutTo.setDescription( gamesPutDto.getDescription() );
+        gamesPutTo.setDeveloper( gamesPutDto.getDeveloper() );
+        gamesPutTo.setReleaseDate( gamesPutDto.getReleaseDate() );
+        gamesPutTo.setRating( gamesPutDto.getRating() );
+
+        return gamesPutTo;
     }
 
     protected GenresNameDto genresNameToToGenresNameDto(GenresNameTo genresNameTo) {

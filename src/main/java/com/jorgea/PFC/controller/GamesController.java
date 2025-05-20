@@ -56,9 +56,18 @@ public class GamesController {
 
     @PostMapping("")
     public ResponseEntity<GamesWithoutGenresDto> saveGames (@Valid @RequestBody GamesPostDto gamesPostDto){
-        GamesPostTo gamesPostTo = gamesDtoMapper.toSaveGamesTo(gamesPostDto);
+        GamesPostTo gamesPostTo = gamesDtoMapper.toGamesPostTo(gamesPostDto);
 
         GamesWithoutGenresTo gamesWithoutGenresTo = gamesService.saveGames(gamesPostTo);
+
+        return ResponseEntity.ok(gamesDtoMapper.toGamesWithoutGenresDto(gamesWithoutGenresTo));
+    }
+
+    @PutMapping("/{gameId}")
+    public ResponseEntity<GamesWithoutGenresDto> updateGames(@PathVariable Integer gameId, @Valid @RequestBody GamesPutDto gamesPutDto){
+        GamesPutTo gamesPutTo = gamesDtoMapper.toGamesPutTo(gamesPutDto);
+
+        GamesWithoutGenresTo gamesWithoutGenresTo = gamesService.updateGames(gameId, gamesPutTo);
 
         return ResponseEntity.ok(gamesDtoMapper.toGamesWithoutGenresDto(gamesWithoutGenresTo));
     }

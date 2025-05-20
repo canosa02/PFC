@@ -1,13 +1,7 @@
 package com.jorgea.PFC.mapperDto;
 
-import com.jorgea.PFC.dto.GamesDto;
-import com.jorgea.PFC.dto.GamesGenresDto;
-import com.jorgea.PFC.dto.GamesWithoutGenresDto;
-import com.jorgea.PFC.dto.GamesPostDto;
-import com.jorgea.PFC.to.GamesGenresTo;
-import com.jorgea.PFC.to.GamesPostTo;
-import com.jorgea.PFC.to.GamesTo;
-import com.jorgea.PFC.to.GamesWithoutGenresTo;
+import com.jorgea.PFC.dto.*;
+import com.jorgea.PFC.to.*;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
@@ -19,8 +13,10 @@ public interface GamesDtoMapper {
 
     GamesGenresDto toGamesGenresDto(GamesGenresTo gamesGenresTo);
 
-    GamesPostTo toSaveGamesTo(GamesPostDto gamesPostDto);
+    GamesPostTo toGamesPostTo(GamesPostDto gamesPostDto);
 
     GamesWithoutGenresDto toGamesWithoutGenresDto(GamesWithoutGenresTo gamesWithoutGenresTo);
+
+    GamesPutTo toGamesPutTo(GamesPutDto gamesPutDto);
 
 }

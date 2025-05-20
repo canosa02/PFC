@@ -113,9 +113,21 @@ public class GamesServiceImpl implements GamesService {
     }
 
     @Override
-    public GamesWithoutGenresTo updateGames(GamesPutTo gamesPutTo) {
+    public GamesWithoutGenresTo updateGames(Integer gameId, GamesPutTo gamesPutTo) {
+        Optional<GamesModel> gamesModelOptional = gamesRepository.findById(gameId);
 
-        return null;
+        if(gamesModelOptional.isEmpty()){
+            throw new InstanceNotFoundException();
+        }
+
+        GamesModel gamesModel = gamesModelOptional.get();
+        gamesModel.setTitle(gamesPutTo.getTitle());
+        gamesModel.setDescription(gamesPutTo.getDescription());
+        gamesModel.setDeveloper(gamesPutTo.getDeveloper());
+        gamesModel.setReleaseDate(gamesPutTo.getReleaseDate());
+        gamesModel.setRating(gamesPutTo.getRating());
+
+        return gamesModelMapper.toGamesWithoutGenresTo(gamesModel);
     }
 
     @Override

@@ -1,10 +1,21 @@
 package com.jorgea.PFC.dto;
 
+import com.jorgea.PFC.validation.StringNotBlank;
+
 public class GamesPutDto {
+
+    @StringNotBlank
     private String title;
+
+    @StringNotBlank
     private String description;
+
+    @StringNotBlank
     private String developer;
+
+    @StringNotBlank
     private String releaseDate;
+
     private double rating;
 
     public GamesPutDto() {
