@@ -17,3 +17,11 @@ create table genres(
 	genre_id SERIAL primary key,
 	genre_name varchar(30) not null
 );
+
+create table genres_in_games(
+	genre_in_game_id SERIAL primary key,
+	game_id int not null,
+	genre_id int not null,
+	foreign key (game_id) references games(game_id) on delete cascade,
+	foreign key (genre_id) references genres(genre_id) on delete cascade
+);

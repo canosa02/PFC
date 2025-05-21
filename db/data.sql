@@ -1,5 +1,3 @@
-
-
 INSERT INTO users (username, password) VALUES
 ('juan123', 'claveSegura1'),
 ('maria456', 'claveSegura2');

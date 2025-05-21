@@ -1,7 +1,15 @@
 package com.jorgea.PFC.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name = "genres_in_games")
 public class GenresInGames {
 
     @Id
@@ -9,11 +17,11 @@ public class GenresInGames {
     private Integer genresInGamesId;
 
     @ManyToOne
-    @JoinColumn(name = "game_id")
+    @JoinColumn(name = "game_id", nullable = false)
     private GamesModel game;
 
     @ManyToOne
-    @JoinColumn(name = "genre_id")
+    @JoinColumn(name = "genre_id", nullable = false)
     private GenresModel genre;
 
     public GenresInGames() {

@@ -4,6 +4,7 @@ import com.jorgea.PFC.exception.ConflictException;
 import com.jorgea.PFC.exception.InstanceNotFoundException;
 import com.jorgea.PFC.mapperModel.GamesModelMapper;
 import com.jorgea.PFC.model.GamesModel;
+import com.jorgea.PFC.model.GenresInGames;
 import com.jorgea.PFC.model.GenresModel;
 import com.jorgea.PFC.repository.GamesRepository;
 import com.jorgea.PFC.repository.GenresRepository;
@@ -58,8 +59,8 @@ public class GamesServiceImpl implements GamesService {
             List<GenresNameTo> genresNameTos = new ArrayList<>();
 
             if (gamesModel.getGenres() != null) {
-                for (GenresModel genresModel : gamesModel.getGenres()) {
-                    genresNameTos.add(new GenresNameTo(genresModel.getGenreName()));
+                for (GenresInGames genresInGames : gamesModel.getGenres()) {
+                    genresNameTos.add(new GenresNameTo(genresInGames.getGenre().getGenreName()));
                 }
             }
             gamesGenresTos.add(new GamesGenresTo(
@@ -100,8 +101,8 @@ public class GamesServiceImpl implements GamesService {
 
         List<GenresNameTo> genresNameTos = new ArrayList<>();
 
-        for (GenresModel genresModel : gamesModel1.getGenres()) {
-            genresNameTos.add(new GenresNameTo(genresModel.getGenreName()));
+        for (GenresInGames genresInGames : gamesModel1.getGenres()) {
+            genresNameTos.add(new GenresNameTo(genresInGames.getGenre().getGenreName()));
         }
 
         gamesGenresTo.setGenres(genresNameTos);
@@ -130,8 +131,7 @@ public class GamesServiceImpl implements GamesService {
         GamesModel gamesModel = gamesModelOptional.get();
         GenresModel genresModel = genresModelOptional.get();
 
-
-
+        return null;
     }
 
     @Override

@@ -1,14 +1,13 @@
 package com.jorgea.PFC.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Table;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+
 import java.util.List;
 
 @Entity
@@ -20,18 +19,13 @@ public class GenresModel {
     private int genresId;
     private String genreName;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(
-            name = "game_genre",
-            joinColumns = @JoinColumn(name = "genre_id"),
-            inverseJoinColumns = @JoinColumn(name = "game_id")
-    )
-    private List<GamesModel> games;
+    @OneToMany(mappedBy = "genre", cascade = CascadeType.ALL, orphanRemoval = true, fetch = jakarta.persistence.FetchType.LAZY)
+    private List<GenresInGames> games;
 
     public GenresModel() {
     }
 
-    public GenresModel(String genreName, List<GamesModel> games) {
+    public GenresModel(String genreName, List<GenresInGames> games) {
         this.genreName = genreName;
         this.games = games;
     }
@@ -52,11 +46,11 @@ public class GenresModel {
         this.genreName = genreName;
     }
 
-    public List<GamesModel> getGames() {
+    public List<GenresInGames> getGames() {
         return games;
     }
 
-    public void setGames(List<GamesModel> games) {
+    public void setGames(List<GenresInGames> games) {
         this.games = games;
     }
 

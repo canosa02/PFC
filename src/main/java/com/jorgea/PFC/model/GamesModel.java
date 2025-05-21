@@ -20,13 +20,13 @@ public class GamesModel {
     private String releaseDate;
     private double rating;
 
-    @ManyToMany(mappedBy = "games")
-    private List<GenresModel> genres;
+    @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<GenresInGames> genres;
 
     public GamesModel() {
     }
 
-    public GamesModel(Integer gameId, String title, String description, String developer, String releaseDate, double rating, List<GenresModel> genres) {
+    public GamesModel(Integer gameId, String title, String description, String developer, String releaseDate, double rating, List<GenresInGames> genres) {
         this.gameId = gameId;
         this.title = title;
         this.description = description;
@@ -84,11 +84,11 @@ public class GamesModel {
         this.rating = rating;
     }
 
-    public List<GenresModel> getGenres() {
+    public List<GenresInGames> getGenres() {
         return genres;
     }
 
-    public void setGenres(List<GenresModel> genres) {
+    public void setGenres(List<GenresInGames> genres) {
         this.genres = genres;
     }
 
