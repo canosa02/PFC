@@ -131,59 +131,7 @@ public class GamesServiceImpl implements GamesService {
         GenresModel genresModel = genresModelOptional.get();
 
 
-       if(gamesModel.getGenres() == null){
-           gamesModel.setGenres(new ArrayList<>());
-       }
 
-       if(genresModel.getGames() == null){
-           genresModel.setGames(new ArrayList<>());
-       }
-
-       boolean genreExists = false;
-       for (GenresModel genre : gamesModel.getGenres()) {
-           if(genre.getGenresId() == genresModel.getGenresId()){
-               genreExists = true;
-               break;
-           }
-       }
-
-       if(!genreExists){
-           gamesModel.getGenres().add(genresModel);
-       } else {
-           throw new ConflictException("The genre already exists");
-       }
-
-        boolean gameExists = false;
-        for (GenresModel genre : gamesModel.getGenres()) {
-            if(genre.getGenresId() == genresModel.getGenresId()){
-                gameExists = true;
-                break;
-            }
-        }
-
-        if(!gameExists){
-            genresModel.getGames().add(gamesModel);
-        }
-
-        genresModel = genresRepository.save(genresModel);
-        gamesModel = gamesRepository.save(gamesModel);
-
-        GamesGenresTo gamesGenresTo = new GamesGenresTo();
-        gamesGenresTo.setGameId(gamesModel.getGameId());
-        gamesGenresTo.setTitle(gamesModel.getTitle());
-        gamesGenresTo.setDescription(gamesModel.getDescription());
-        gamesGenresTo.setDeveloper(gamesModel.getDeveloper());
-        gamesGenresTo.setReleaseDate(gamesModel.getReleaseDate());
-        gamesGenresTo.setRating(gamesModel.getRating());
-
-        List<GenresNameTo> genresNameTos = new ArrayList<>();
-
-        for (GenresModel genre : gamesModel.getGenres()) {
-            genresNameTos.add(new GenresNameTo(genre.getGenreName()));
-        }
-        gamesGenresTo.setGenres(genresNameTos);
-
-        return gamesGenresTo;
     }
 
     @Override
