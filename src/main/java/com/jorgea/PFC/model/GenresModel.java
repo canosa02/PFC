@@ -16,7 +16,7 @@ public class GenresModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int genresId;
+    private int genreId;
     private String genreName;
 
     @OneToMany(mappedBy = "genre", cascade = CascadeType.ALL, orphanRemoval = true, fetch = jakarta.persistence.FetchType.LAZY)
@@ -30,12 +30,12 @@ public class GenresModel {
         this.games = games;
     }
 
-    public int getGenresId() {
-        return genresId;
+    public int getGenreId() {
+        return genreId;
     }
 
-    public void setGenresId(int genresId) {
-        this.genresId = genresId;
+    public void setGenreId(int genreId) {
+        this.genreId = genreId;
     }
 
     public String getGenreName() {
@@ -57,7 +57,7 @@ public class GenresModel {
     @Override
     public String toString() {
         return "GenresModel{" +
-                "genresId=" + genresId +
+                "genreId=" + genreId +
                 ", genreName='" + genreName + '\'' +
                 ", games=" + games +
                 '}';

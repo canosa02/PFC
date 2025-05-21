@@ -14,7 +14,7 @@ public class GenresInGames {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer genresInGamesId;
+    private Integer genreInGameId;
 
     @ManyToOne
     @JoinColumn(name = "game_id", nullable = false)
@@ -27,18 +27,18 @@ public class GenresInGames {
     public GenresInGames() {
     }
 
-    public GenresInGames(Integer genresInGamesId, GamesModel game, GenresModel genre) {
-        this.genresInGamesId = genresInGamesId;
+    public GenresInGames(Integer genreInGameId, GamesModel game, GenresModel genre) {
+        this.genreInGameId = genreInGameId;
         this.game = game;
         this.genre = genre;
     }
 
-    public Integer getGenresInGamesId() {
-        return genresInGamesId;
+    public Integer getGenreInGameId() {
+        return genreInGameId;
     }
 
-    public void setGenresInGamesId(Integer genresInGamesId) {
-        this.genresInGamesId = genresInGamesId;
+    public void setGenreInGameId(Integer genreInGameId) {
+        this.genreInGameId = genreInGameId;
     }
 
     public GamesModel getGame() {

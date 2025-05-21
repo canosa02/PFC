@@ -7,6 +7,7 @@ import com.jorgea.PFC.model.GamesModel;
 import com.jorgea.PFC.model.GenresInGames;
 import com.jorgea.PFC.model.GenresModel;
 import com.jorgea.PFC.repository.GamesRepository;
+import com.jorgea.PFC.repository.GenresInGamesRepository;
 import com.jorgea.PFC.repository.GenresRepository;
 import com.jorgea.PFC.specification.GamesSpecification;
 import com.jorgea.PFC.to.*;
@@ -17,7 +18,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import javax.management.InstanceAlreadyExistsException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -30,11 +30,14 @@ public class GamesServiceImpl implements GamesService {
 
     private final GenresRepository genresRepository;
 
+    private final GenresInGamesRepository genresInGamesRepository;
+
     private final GamesModelMapper gamesModelMapper;
 
-    public GamesServiceImpl(GamesRepository gamesRepository, GenresRepository genresRepository, GamesModelMapper gamesModelMapper) {
+    public GamesServiceImpl(GamesRepository gamesRepository, GenresRepository genresRepository, GenresInGamesRepository genresInGamesRepository, GamesModelMapper gamesModelMapper) {
         this.gamesRepository = gamesRepository;
         this.genresRepository = genresRepository;
+        this.genresInGamesRepository = genresInGamesRepository;
         this.gamesModelMapper = gamesModelMapper;
     }
 
@@ -123,15 +126,48 @@ public class GamesServiceImpl implements GamesService {
     public GamesGenresTo addGenresToGames(Integer gameId, Integer genreId){
         Optional<GamesModel> gamesModelOptional = gamesRepository.findById(gameId);
         Optional<GenresModel> genresModelOptional = genresRepository.findById(genreId);
+        Optional<GenresInGames> genresInGamesOptional = genresInGamesRepository.findByGame_GameIdAndGenre_GenreId(gameId, genreId);
 
         if(gamesModelOptional.isEmpty() || genresModelOptional.isEmpty()){
             throw new InstanceNotFoundException();
         }
 
+        if(genresInGamesOptional.isPresent()){
+            throw new ConflictException();
+        }
+
         GamesModel gamesModel = gamesModelOptional.get();
         GenresModel genresModel = genresModelOptional.get();
 
-        return null;
+        GamesGenresTo gamesGenresTo = new GamesGenresTo();
+        gamesGenresTo.setGameId(gamesModel.getGameId());
+        gamesGenresTo.setTitle(gamesModel.getTitle());
+        gamesGenresTo.setDescription(gamesModel.getDescription());
+        gamesGenresTo.setDeveloper(gamesModel.getDeveloper());
+        gamesGenresTo.setReleaseDate(gamesModel.getReleaseDate());
+        gamesGenresTo.setRating(gamesModel.getRating());
+
+        List<GenresNameTo> genresNameTos = new ArrayList<>();
+
+        if (gamesModel.getGenres() != null) {
+            for (GenresInGames genresInGames : gamesModel.getGenres()) {
+                genresNameTos.add(new GenresNameTo(genresInGames.getGenre().getGenreName()));
+            }
+        }
+
+        genresNameTos.add(new GenresNameTo(genresModel.getGenreName()));
+
+        gamesGenresTo.setGenres(genresNameTos);
+
+        gamesGenresTo.setGenres(genresNameTos);
+
+        GenresInGames genresInGames = new GenresInGames();
+        genresInGames.setGame(gamesModel);
+        genresInGames.setGenre(genresModel);
+
+        genresInGamesRepository.save(genresInGames);
+
+        return gamesGenresTo;
     }
 
     @Override
