@@ -54,11 +54,11 @@ public class GamesServiceImpl implements GamesService {
             spec = spec.and(GamesSpecification.hasGenreName(genreName));
         }
 
-        Page<GamesModel> gamesModels = gamesRepository.findAll(spec, pageable);
+        Page<GamesModel> gamesModelPage = gamesRepository.findAll(spec, pageable);
 
         List<GamesGenresTo> gamesGenresTos = new ArrayList<>();
 
-        for (GamesModel gamesModel : gamesModels.getContent()) {
+        for (GamesModel gamesModel : gamesModelPage.getContent()) {
             List<GenresNameTo> genresNameTos = new ArrayList<>();
 
             if (gamesModel.getGenres() != null) {
@@ -78,8 +78,8 @@ public class GamesServiceImpl implements GamesService {
         }
         return new PageResponseTo<>(
                 gamesGenresTos,
-                gamesModels.getPageable().getPageNumber() + 1,
-                gamesModels.getTotalPages()
+                gamesModelPage.getPageable().getPageNumber() + 1,
+                gamesModelPage.getTotalPages()
         );
     }
 
