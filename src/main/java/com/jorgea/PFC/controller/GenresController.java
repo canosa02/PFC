@@ -1,17 +1,24 @@
 package com.jorgea.PFC.controller;
 
 import com.jorgea.PFC.dto.GamesGenresDto;
+import com.jorgea.PFC.dto.GenresNameDto;
 import com.jorgea.PFC.dto.GenresWithoutGamesDto;
 import com.jorgea.PFC.dto.PageResponseDto;
 import com.jorgea.PFC.mapperDto.GenresDtoMapper;
 import com.jorgea.PFC.service.GenresService;
+import com.jorgea.PFC.to.GenresNameTo;
 import com.jorgea.PFC.to.GenresWithoutGamesTo;
 import com.jorgea.PFC.to.PageResponseTo;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -51,6 +58,20 @@ public class GenresController {
         return ResponseEntity.ok(response);
     }
 
+    @GetMapping("/{genreId}")
+    public ResponseEntity<GenresWithoutGamesDto> findByGenreId (@PathVariable Integer genreId) {
+        GenresWithoutGamesTo genresWithoutGamesTo = genresService.findByGenreId(genreId);
 
+        return ResponseEntity.ok(genresDtoMapper.toGenresWithoutGamesDto(genresWithoutGamesTo));
+    }
+
+    @PostMapping("")
+    public ResponseEntity<GenresWithoutGamesDto> saveGenres (@Valid @RequestBody GenresNameDto genresNameDto){
+        GenresNameTo genresNameTo = genresDtoMapper.toGenresNameTo(genresNameDto);
+
+        GenresWithoutGamesTo genresWithoutGamesTo = genresService.saveGenres(genresNameTo);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(genresDtoMapper.toGenresWithoutGamesDto(genresWithoutGamesTo))
+    }
 
 }

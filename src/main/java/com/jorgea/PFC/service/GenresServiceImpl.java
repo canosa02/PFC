@@ -1,5 +1,6 @@
 package com.jorgea.PFC.service;
 
+import com.jorgea.PFC.exception.InstanceNotFoundException;
 import com.jorgea.PFC.to.GenresWithoutGamesTo;
 import com.jorgea.PFC.mapperModel.GenresModelMapper;
 import com.jorgea.PFC.model.GenresModel;
@@ -14,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -54,6 +56,24 @@ public class GenresServiceImpl implements GenresService{
                 genresModelPage.getTotalPages()
         );
 
+    }
+
+    @Override
+    public GenresWithoutGamesTo findByGenreId(Integer genreId) {
+
+        Optional<GenresModel> genresModelOptional = genresRepository.findById(genreId);
+
+        if (genresModelOptional.isEmpty()){
+            throw new InstanceNotFoundException();
+        }
+
+        GenresModel genresModel = genresModelOptional.get();
+
+        GenresWithoutGamesTo genresWithoutGamesTo = new GenresWithoutGamesTo();
+        genresWithoutGamesTo.setGenresId(genresModel.getGenreId());
+        genresWithoutGamesTo.setGenreName(genresModel.getGenreName());
+
+        return genresWithoutGamesTo;
     }
 
 }

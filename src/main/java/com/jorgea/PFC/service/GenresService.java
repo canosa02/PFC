@@ -10,4 +10,5 @@ public interface GenresService {
 
     PageResponseTo<GenresWithoutGamesTo> findALlGenresWithFilters(String genreName, Pageable pageable);
 
+    GenresWithoutGamesTo findByGenreId(Integer genreId);
 }

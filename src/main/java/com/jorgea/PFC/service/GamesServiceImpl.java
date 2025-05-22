@@ -86,13 +86,13 @@ public class GamesServiceImpl implements GamesService {
     @Override
     public GamesGenresTo findByGameId(@PathVariable Integer gameId) {
 
-        Optional<GamesModel> gamesModel = gamesRepository.findById(gameId);
+        Optional<GamesModel> gamesModelOptional = gamesRepository.findById(gameId);
 
-        if (gamesModel.isEmpty()) {
+        if (gamesModelOptional.isEmpty()) {
             throw new InstanceNotFoundException();
         }
 
-        GamesModel gamesModel1 = gamesModel.get();
+        GamesModel gamesModel1 = gamesModelOptional.get();
 
         GamesGenresTo gamesGenresTo = new GamesGenresTo();
         gamesGenresTo.setGameId(gamesModel1.getGameId());
