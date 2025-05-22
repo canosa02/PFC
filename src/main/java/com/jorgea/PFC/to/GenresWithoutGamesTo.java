@@ -1,23 +1,23 @@
 package com.jorgea.PFC.to;
 
 public class GenresWithoutGamesTo {
-    private int genresId;
+    private int genreId;
     private String genreName;
 
     public GenresWithoutGamesTo() {
     }
 
-    public GenresWithoutGamesTo(int genresId, String genreName) {
-        this.genresId = genresId;
+    public GenresWithoutGamesTo(int genreId, String genreName) {
+        this.genreId = genreId;
         this.genreName = genreName;
     }
 
-    public int getGenresId() {
-        return genresId;
+    public int getGenreId() {
+        return genreId;
     }
 
-    public void setGenresId(int genresId) {
-        this.genresId = genresId;
+    public void setGenreId(int genreId) {
+        this.genreId = genreId;
     }
 
     public String getGenreName() {

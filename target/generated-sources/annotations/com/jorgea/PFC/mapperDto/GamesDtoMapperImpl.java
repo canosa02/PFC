@@ -22,7 +22,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-05-22T12:48:26+0200",
+    date = "2025-05-22T14:10:45+0200",
     comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.5 (Oracle Corporation)"
 )
 @Component
@@ -167,7 +167,7 @@ public class GamesDtoMapperImpl implements GamesDtoMapper {
 
         GenresNameDto genresNameDto = new GenresNameDto();
 
-        genresNameDto.setName( genresNameTo.getName() );
+        genresNameDto.setGenreName( genresNameTo.getGenreName() );
 
         return genresNameDto;
     }

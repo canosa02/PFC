@@ -1,23 +1,23 @@
 package com.jorgea.PFC.dto;
 
 public class GenresWithoutGamesDto {
-    private int genresId;
+    private int genreId;
     private String genreName;
 
     public GenresWithoutGamesDto() {
     }
 
-    public GenresWithoutGamesDto(int genresId, String genreName) {
-        this.genresId = genresId;
+    public GenresWithoutGamesDto(int genreId, String genreName) {
+        this.genreId = genreId;
         this.genreName = genreName;
     }
 
-    public int getGenresId() {
-        return genresId;
+    public int getGenreId() {
+        return genreId;
     }
 
-    public void setGenresId(int genresId) {
-        this.genresId = genresId;
+    public void setGenreId(int genreId) {
+        this.genreId = genreId;
     }
 
     public String getGenreName() {

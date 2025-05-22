@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-05-22T13:09:25+0200",
+    date = "2025-05-22T14:10:45+0200",
     comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.5 (Oracle Corporation)"
 )
 @Component
@@ -44,16 +44,11 @@ public class GenresDtoMapperImpl implements GenresDtoMapper {
             return null;
         }
 
-        GenresDto genresDto = new GenresDto();
+        GenresNameTo genresNameTo = new GenresNameTo();
 
-        genresDto.setGenresId( genresNameDto.getGenresId() );
-        genresDto.setGenreName( genresNameDto.getGenreName() );
-        List<GamesDto> list = genresNameDto.getGames();
-        if ( list != null ) {
-            genresDto.setGames( new ArrayList<GamesDto>( list ) );
-        }
+        genresNameTo.setGenreName( genresNameDto.getGenreName() );
 
-        return genresDto;
+        return genresNameTo;
     }
 
     @Override
@@ -64,7 +59,7 @@ public class GenresDtoMapperImpl implements GenresDtoMapper {
 
         GenresWithoutGamesDto genresWithoutGamesDto = new GenresWithoutGamesDto();
 
-        genresWithoutGamesDto.setGenresId( genresWithoutGamesTo.getGenresId() );
+        genresWithoutGamesDto.setGenreId( genresWithoutGamesTo.getGenreId() );
         genresWithoutGamesDto.setGenreName( genresWithoutGamesTo.getGenreName() );
 
         return genresWithoutGamesDto;

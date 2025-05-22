@@ -1,26 +1,21 @@
 package com.jorgea.PFC.to;
 
 public class GenresNameTo {
-    private String name;
+    private String genreName;
 
     public GenresNameTo() {
     }
 
-    public GenresNameTo(String name) {
-        this.name = name;
+    public GenresNameTo(String genreName) {
+        this.genreName = genreName;
     }
 
-    public String getName() {
-        return name;
+    public String getGenreName() {
+        return genreName;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return "genres{" + "name=" + name + '}';
+    public void setGenreName(String genreName) {
+        this.genreName = genreName;
     }
 
 }

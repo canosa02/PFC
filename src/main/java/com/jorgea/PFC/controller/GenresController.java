@@ -71,7 +71,9 @@ public class GenresController {
 
         GenresWithoutGamesTo genresWithoutGamesTo = genresService.saveGenres(genresNameTo);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(genresDtoMapper.toGenresWithoutGamesDto(genresWithoutGamesTo))
+        GenresWithoutGamesDto genresWithoutGamesDto = genresDtoMapper.toGenresWithoutGamesDto(genresWithoutGamesTo);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(genresWithoutGamesDto);
     }
 
 }

@@ -1,6 +1,7 @@
 package com.jorgea.PFC.service;
 
 import com.jorgea.PFC.exception.InstanceNotFoundException;
+import com.jorgea.PFC.to.GenresNameTo;
 import com.jorgea.PFC.to.GenresWithoutGamesTo;
 import com.jorgea.PFC.mapperModel.GenresModelMapper;
 import com.jorgea.PFC.model.GenresModel;
@@ -70,10 +71,19 @@ public class GenresServiceImpl implements GenresService{
         GenresModel genresModel = genresModelOptional.get();
 
         GenresWithoutGamesTo genresWithoutGamesTo = new GenresWithoutGamesTo();
-        genresWithoutGamesTo.setGenresId(genresModel.getGenreId());
+        genresWithoutGamesTo.setGenreId(genresModel.getGenreId());
         genresWithoutGamesTo.setGenreName(genresModel.getGenreName());
 
         return genresWithoutGamesTo;
+    }
+
+    @Override
+    public GenresWithoutGamesTo saveGenres(GenresNameTo genresNameTo) {
+        GenresModel genresModel = genresModelMapper.toGenresModel(genresNameTo);
+
+        GenresModel savedGenresModel = genresRepository.save(genresModel);
+
+        return genresModelMapper.toGenresWithoutGamesTo(savedGenresModel);
     }
 
 }
