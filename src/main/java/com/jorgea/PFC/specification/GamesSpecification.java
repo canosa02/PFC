@@ -1,6 +1,7 @@
 package com.jorgea.PFC.specification;
 
 import com.jorgea.PFC.model.GamesModel;
+import com.jorgea.PFC.model.GenresInGames;
 import com.jorgea.PFC.model.GenresModel;
 import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.JoinType;
@@ -15,8 +16,9 @@ public class GamesSpecification {
 
     public static Specification<GamesModel> hasGenreName(String genreName){
         return (root, query, criteriaBuilder) -> {
-            Join<GamesModel, GenresModel> join = root.join("genres", JoinType.LEFT);
-            return criteriaBuilder.like(criteriaBuilder.lower(join.get("genreName")), "%" + genreName.toLowerCase() + "%");
+            Join<GamesModel, GenresInGames> join = root.join("genres", JoinType.LEFT);
+            Join<GenresInGames, GenresModel> join1 = join.join("genre", JoinType.LEFT);
+            return criteriaBuilder.like(criteriaBuilder.lower(join1.get("genreName")), "%" + genreName.toLowerCase() + "%");
         };
     }
 
