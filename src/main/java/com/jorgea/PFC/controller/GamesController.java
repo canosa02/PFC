@@ -99,4 +99,11 @@ public class GamesController {
         return ResponseEntity.ok().build();
     }
 
+    @DeleteMapping("/{gameId}/genres/{genreId}")
+    public ResponseEntity<Void> deleteGenresFromGames(@PathVariable Integer gameId, @PathVariable Integer genreId){
+        gamesService.deleteGenresFromGames(gameId, genreId);
+
+        return ResponseEntity.ok().build();
+    }
+
 }

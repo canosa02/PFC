@@ -233,4 +233,19 @@ public class GamesServiceImpl implements GamesService {
 
         gamesRepository.delete(gamesModel);
     }
+
+    @Override
+    public void deleteGenresFromGames(Integer gameId, Integer genreId) {
+        Optional<GamesModel> gamesModelOptional = gamesRepository.findById(gameId);
+        Optional<GenresModel> genresModelOptional = genresRepository.findById(genreId);
+        Optional<GenresInGames> genresInGamesOptional = genresInGamesRepository.findByGame_GameIdAndGenre_GenreId(gameId, genreId);
+
+        if (gamesModelOptional.isEmpty() || genresModelOptional.isEmpty() || genresInGamesOptional.isEmpty()) {
+            throw new InstanceNotFoundException();
+        }
+
+        GenresInGames genresInGames = genresInGamesOptional.get();
+
+        genresInGamesRepository.delete(genresInGames);
+    }
 }

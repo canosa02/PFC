@@ -19,4 +19,6 @@ public interface GamesService {
     GamesWithoutGenresTo partialUpdateGames(Integer gameId, GamesPatchTo gamesPatchTo);
 
     void deleteGames(Integer gameId);
+
+    void deleteGenresFromGames(Integer gameId, Integer genreId);
 }
