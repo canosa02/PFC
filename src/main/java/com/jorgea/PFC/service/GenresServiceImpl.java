@@ -97,14 +97,25 @@ public class GenresServiceImpl implements GenresService{
         }
 
         if (genresNameTo.getGenreName().isBlank()){
-            throw new ConflictException(); //esto no debería dar conflict, sino un bad request o algo parecido
-            // pero ya decidiré, esto es pa pruebas
+            throw new ConflictException();
         }
 
         GenresModel genresModel = genresModelOptional.get();
         genresModel.setGenreName(genresNameTo.getGenreName());
 
         return genresModelMapper.toGenresWithoutGamesTo(genresModel);
+    }
+
+    public void deleteGenres(Integer genreId){
+        Optional <GenresModel> genresModelOptional = genresRepository.findById(genreId);
+
+        if (genresModelOptional.isEmpty()){
+            throw new InstanceNotFoundException();
+        }
+
+        GenresModel genresModel = genresModelOptional.get();
+
+        genresRepository.delete(genresModel);
     }
 
 }

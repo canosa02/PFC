@@ -16,4 +16,6 @@ public interface GenresService {
     GenresWithoutGamesTo saveGenres(GenresNameTo genresNameTo);
 
     GenresWithoutGamesTo updateGenres(Integer genreId, GenresNameTo genresNameTo);
+
+    void deleteGenres(Integer genreId);
 }
