@@ -6,7 +6,6 @@ import com.jorgea.PFC.to.GenresWithoutGamesTo;
 import com.jorgea.PFC.to.PageResponseTo;
 import io.swagger.v3.oas.annotations.servers.Server;
 import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
 
 public interface GenresService {
 
@@ -15,4 +14,6 @@ public interface GenresService {
     GenresWithoutGamesTo findByGenreId(Integer genreId);
 
     GenresWithoutGamesTo saveGenres(GenresNameTo genresNameTo);
+
+    GenresWithoutGamesTo updateGenres(Integer genreId, GenresNameTo genresNameTo);
 }

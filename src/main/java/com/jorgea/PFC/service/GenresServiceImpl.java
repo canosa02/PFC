@@ -1,5 +1,6 @@
 package com.jorgea.PFC.service;
 
+import com.jorgea.PFC.exception.ConflictException;
 import com.jorgea.PFC.exception.InstanceNotFoundException;
 import com.jorgea.PFC.to.GenresNameTo;
 import com.jorgea.PFC.to.GenresWithoutGamesTo;
@@ -14,6 +15,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -84,6 +86,25 @@ public class GenresServiceImpl implements GenresService{
         GenresModel savedGenresModel = genresRepository.save(genresModel);
 
         return genresModelMapper.toGenresWithoutGamesTo(savedGenresModel);
+    }
+
+    @Override
+    public GenresWithoutGamesTo updateGenres(Integer genreId, GenresNameTo genresNameTo){
+        Optional<GenresModel> genresModelOptional = genresRepository.findById(genreId);
+
+        if (genresModelOptional.isEmpty()){
+            throw new InstanceNotFoundException();
+        }
+
+        if (genresNameTo.getGenreName().isBlank()){
+            throw new ConflictException(); //esto no debería dar conflict, sino un bad request o algo parecido
+            // pero ya decidiré, esto es pa pruebas
+        }
+
+        GenresModel genresModel = genresModelOptional.get();
+        genresModel.setGenreName(genresNameTo.getGenreName());
+
+        return genresModelMapper.toGenresWithoutGamesTo(genresModel);
     }
 
 }
