@@ -23,6 +23,9 @@ public class GamesModel {
     @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<GenresInGames> genres;
 
+    @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<ReviewsModel> reviews;
+
     public GamesModel() {
     }
 

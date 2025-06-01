@@ -7,24 +7,24 @@ import jakarta.persistence.*;
 public class UsersModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int userId;
+    private Integer userId;
     private String username;
     private String password;
 
     public UsersModel() {
     }
 
-    public UsersModel(int userId, String username, String password) {
+    public UsersModel(Integer userId, String username, String password) {
         this.userId = userId;
         this.username = username;
         this.password = password;
     }
 
-    public int getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
