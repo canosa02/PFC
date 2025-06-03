@@ -1,7 +1,7 @@
 package com.jorgea.PFC.mapperModel;
 
 import com.jorgea.PFC.model.GamesModel;
-import com.jorgea.PFC.model.GenresInGames;
+import com.jorgea.PFC.model.GenresInGamesModel;
 import com.jorgea.PFC.to.GamesGenresTo;
 import com.jorgea.PFC.to.GamesPostTo;
 import com.jorgea.PFC.to.GamesWithoutGenresTo;
@@ -13,8 +13,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-06-01T19:04:12+0200",
-    comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.7 (Oracle Corporation)"
+    date = "2025-06-03T16:47:09+0200",
+    comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.5 (Oracle Corporation)"
 )
 @Component
 public class GamesModelMapperImpl implements GamesModelMapper {
@@ -33,7 +33,7 @@ public class GamesModelMapperImpl implements GamesModelMapper {
         gamesGenresTo.setDeveloper( gamesModel.getDeveloper() );
         gamesGenresTo.setReleaseDate( gamesModel.getReleaseDate() );
         gamesGenresTo.setRating( gamesModel.getRating() );
-        gamesGenresTo.setGenres( genresInGamesListToGenresNameToList( gamesModel.getGenres() ) );
+        gamesGenresTo.setGenres( genresInGamesModelListToGenresNameToList( gamesModel.getGenres() ) );
 
         return gamesGenresTo;
     }
@@ -73,8 +73,8 @@ public class GamesModelMapperImpl implements GamesModelMapper {
         return gamesModel;
     }
 
-    protected GenresNameTo genresInGamesToGenresNameTo(GenresInGames genresInGames) {
-        if ( genresInGames == null ) {
+    protected GenresNameTo genresInGamesModelToGenresNameTo(GenresInGamesModel genresInGamesModel) {
+        if ( genresInGamesModel == null ) {
             return null;
         }
 
@@ -83,14 +83,14 @@ public class GamesModelMapperImpl implements GamesModelMapper {
         return genresNameTo;
     }
 
-    protected List<GenresNameTo> genresInGamesListToGenresNameToList(List<GenresInGames> list) {
+    protected List<GenresNameTo> genresInGamesModelListToGenresNameToList(List<GenresInGamesModel> list) {
         if ( list == null ) {
             return null;
         }
 
         List<GenresNameTo> list1 = new ArrayList<GenresNameTo>( list.size() );
-        for ( GenresInGames genresInGames : list ) {
-            list1.add( genresInGamesToGenresNameTo( genresInGames ) );
+        for ( GenresInGamesModel genresInGamesModel : list ) {
+            list1.add( genresInGamesModelToGenresNameTo( genresInGamesModel ) );
         }
 
         return list1;

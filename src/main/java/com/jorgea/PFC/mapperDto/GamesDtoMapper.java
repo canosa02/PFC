@@ -7,10 +7,6 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface GamesDtoMapper {
 
-    GamesDto toGamesDto(GamesTo gamesTo);
-
-    GamesTo toGamesTo(GamesDto gamesDto);
-
     GamesGenresDto toGamesGenresDto(GamesGenresTo gamesGenresTo);
 
     GamesPostTo toGamesPostTo(GamesPostDto gamesPostDto);

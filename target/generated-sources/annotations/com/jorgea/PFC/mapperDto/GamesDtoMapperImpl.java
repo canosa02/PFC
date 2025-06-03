@@ -1,18 +1,15 @@
 package com.jorgea.PFC.mapperDto;
 
-import com.jorgea.PFC.dto.GamesDto;
 import com.jorgea.PFC.dto.GamesGenresDto;
 import com.jorgea.PFC.dto.GamesPatchDto;
 import com.jorgea.PFC.dto.GamesPostDto;
 import com.jorgea.PFC.dto.GamesPutDto;
 import com.jorgea.PFC.dto.GamesWithoutGenresDto;
-import com.jorgea.PFC.dto.GenresDto;
 import com.jorgea.PFC.dto.GenresNameDto;
 import com.jorgea.PFC.to.GamesGenresTo;
 import com.jorgea.PFC.to.GamesPatchTo;
 import com.jorgea.PFC.to.GamesPostTo;
 import com.jorgea.PFC.to.GamesPutTo;
-import com.jorgea.PFC.to.GamesTo;
 import com.jorgea.PFC.to.GamesWithoutGenresTo;
 import com.jorgea.PFC.to.GenresNameTo;
 import java.util.ArrayList;
@@ -22,55 +19,11 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-06-01T19:04:12+0200",
-    comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.7 (Oracle Corporation)"
+    date = "2025-06-03T16:47:09+0200",
+    comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.5 (Oracle Corporation)"
 )
 @Component
 public class GamesDtoMapperImpl implements GamesDtoMapper {
-
-    @Override
-    public GamesDto toGamesDto(GamesTo gamesTo) {
-        if ( gamesTo == null ) {
-            return null;
-        }
-
-        GamesDto gamesDto = new GamesDto();
-
-        gamesDto.setGameId( gamesTo.getGameId() );
-        gamesDto.setTitle( gamesTo.getTitle() );
-        gamesDto.setDescription( gamesTo.getDescription() );
-        gamesDto.setDeveloper( gamesTo.getDeveloper() );
-        gamesDto.setReleaseDate( gamesTo.getReleaseDate() );
-        gamesDto.setRating( gamesTo.getRating() );
-        List<GenresDto> list = gamesTo.getGenres();
-        if ( list != null ) {
-            gamesDto.setGenres( new ArrayList<GenresDto>( list ) );
-        }
-
-        return gamesDto;
-    }
-
-    @Override
-    public GamesTo toGamesTo(GamesDto gamesDto) {
-        if ( gamesDto == null ) {
-            return null;
-        }
-
-        GamesTo gamesTo = new GamesTo();
-
-        gamesTo.setGameId( gamesDto.getGameId() );
-        gamesTo.setTitle( gamesDto.getTitle() );
-        gamesTo.setDescription( gamesDto.getDescription() );
-        gamesTo.setDeveloper( gamesDto.getDeveloper() );
-        gamesTo.setReleaseDate( gamesDto.getReleaseDate() );
-        gamesTo.setRating( gamesDto.getRating() );
-        List<GenresDto> list = gamesDto.getGenres();
-        if ( list != null ) {
-            gamesTo.setGenres( new ArrayList<GenresDto>( list ) );
-        }
-
-        return gamesTo;
-    }
 
     @Override
     public GamesGenresDto toGamesGenresDto(GamesGenresTo gamesGenresTo) {

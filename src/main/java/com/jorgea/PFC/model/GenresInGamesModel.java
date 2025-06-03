@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "genres_in_games")
-public class GenresInGames {
+public class GenresInGamesModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,10 +24,10 @@ public class GenresInGames {
     @JoinColumn(name = "genre_id", nullable = false)
     private GenresModel genre;
 
-    public GenresInGames() {
+    public GenresInGamesModel() {
     }
 
-    public GenresInGames(Integer genreInGameId, GamesModel game, GenresModel genre) {
+    public GenresInGamesModel(Integer genreInGameId, GamesModel game, GenresModel genre) {
         this.genreInGameId = genreInGameId;
         this.game = game;
         this.genre = genre;

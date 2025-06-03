@@ -21,7 +21,7 @@ public class GamesModel {
     private double rating;
 
     @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<GenresInGames> genres;
+    private List<GenresInGamesModel> genres;
 
     @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<ReviewsModel> reviews;
@@ -29,7 +29,7 @@ public class GamesModel {
     public GamesModel() {
     }
 
-    public GamesModel(Integer gameId, String title, String description, String developer, String releaseDate, double rating, List<GenresInGames> genres) {
+    public GamesModel(Integer gameId, String title, String description, String developer, String releaseDate, double rating, List<GenresInGamesModel> genres, List<ReviewsModel> reviews) {
         this.gameId = gameId;
         this.title = title;
         this.description = description;
@@ -37,6 +37,7 @@ public class GamesModel {
         this.releaseDate = releaseDate;
         this.rating = rating;
         this.genres = genres;
+        this.reviews = reviews;
     }
 
     public Integer getGameId() {
@@ -87,24 +88,19 @@ public class GamesModel {
         this.rating = rating;
     }
 
-    public List<GenresInGames> getGenres() {
+    public List<GenresInGamesModel> getGenres() {
         return genres;
     }
 
-    public void setGenres(List<GenresInGames> genres) {
+    public void setGenres(List<GenresInGamesModel> genres) {
         this.genres = genres;
     }
 
-    @Override
-    public String toString() {
-        return "GamesModel{" +
-                "gameId=" + gameId +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", developer='" + developer + '\'' +
-                ", releaseDate='" + releaseDate + '\'' +
-                ", rating=" + rating +
-                ", genres=" + genres +
-                '}';
+    public List<ReviewsModel> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<ReviewsModel> reviews) {
+        this.reviews = reviews;
     }
 }
