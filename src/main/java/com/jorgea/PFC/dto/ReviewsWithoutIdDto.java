@@ -1,19 +1,20 @@
 package com.jorgea.PFC.dto;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.util.Date;
 
 public class ReviewsWithoutIdDto {
     private String reviewText;
 
     private BigDecimal rating;
 
-    private LocalDateTime reviewDate;
+    private Date reviewDate;
 
     public ReviewsWithoutIdDto() {
     }
 
-    public ReviewsWithoutIdDto(String reviewText, BigDecimal rating, LocalDateTime reviewDate) {
+    public ReviewsWithoutIdDto(String reviewText, BigDecimal rating, Date reviewDate) {
         this.reviewText = reviewText;
         this.rating = rating;
         this.reviewDate = reviewDate;
@@ -35,11 +36,11 @@ public class ReviewsWithoutIdDto {
         this.rating = rating;
     }
 
-    public LocalDateTime getReviewDate() {
+    public Date getReviewDate() {
         return reviewDate;
     }
 
-    public void setReviewDate(LocalDateTime reviewDate) {
+    public void setReviewDate(Date reviewDate) {
         this.reviewDate = reviewDate;
     }
 }

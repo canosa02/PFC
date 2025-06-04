@@ -10,7 +10,9 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "reviews")
@@ -30,12 +32,12 @@ public class ReviewsModel {
 
     private BigDecimal rating;
 
-    private LocalDateTime reviewDate;
+    private Date reviewDate;
 
     public ReviewsModel() {
     }
 
-    public ReviewsModel(Integer reviewId, GamesModel game, String reviewText, BigDecimal rating, LocalDateTime reviewDate) {
+    public ReviewsModel(Integer reviewId, GamesModel game, String reviewText, BigDecimal rating, Date reviewDate) {
         this.reviewId = reviewId;
         this.game = game;
         this.reviewText = reviewText;
@@ -75,11 +77,11 @@ public class ReviewsModel {
         this.rating = rating;
     }
 
-    public LocalDateTime getReviewDate() {
+    public Date getReviewDate() {
         return reviewDate;
     }
 
-    public void setReviewDate(LocalDateTime reviewDate) {
+    public void setReviewDate(Date reviewDate) {
         this.reviewDate = reviewDate;
     }
 }

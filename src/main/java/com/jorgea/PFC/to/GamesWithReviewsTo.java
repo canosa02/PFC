@@ -12,12 +12,12 @@ public class GamesWithReviewsTo {
     private String releaseDate;
     private double rating;
     private List<GenresNameTo> genres;
-    private List<ReviewsWithoutIdTo> reviews;
+    private List<ReviewsTo> reviews;
 
     public GamesWithReviewsTo() {
     }
 
-    public GamesWithReviewsTo(String title, String description, String developer, String releaseDate, double rating, List<GenresNameTo> genres, List<ReviewsWithoutIdTo> reviews) {
+    public GamesWithReviewsTo(String title, String description, String developer, String releaseDate, double rating, List<GenresNameTo> genres, List<ReviewsTo> reviews) {
         this.title = title;
         this.description = description;
         this.developer = developer;
@@ -75,11 +75,11 @@ public class GamesWithReviewsTo {
         this.genres = genres;
     }
 
-    public List<ReviewsWithoutIdTo> getReviews() {
+    public List<ReviewsTo> getReviews() {
         return reviews;
     }
 
-    public void setReviews(List<ReviewsWithoutIdTo> reviews) {
+    public void setReviews(List<ReviewsTo> reviews) {
         this.reviews = reviews;
     }
 }

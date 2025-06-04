@@ -25,7 +25,8 @@ public class GenresModel {
     public GenresModel() {
     }
 
-    public GenresModel(String genreName, List<GenresInGamesModel> games) {
+    public GenresModel(int genreId, String genreName, List<GenresInGamesModel> games) {
+        this.genreId = genreId;
         this.genreName = genreName;
         this.games = games;
     }

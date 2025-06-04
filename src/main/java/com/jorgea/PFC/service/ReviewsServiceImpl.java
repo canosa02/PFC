@@ -11,6 +11,7 @@ import com.jorgea.PFC.to.GamesGenresTo;
 import com.jorgea.PFC.to.GamesWithReviewsTo;
 import com.jorgea.PFC.to.GenresNameTo;
 import com.jorgea.PFC.to.PageResponseTo;
+import com.jorgea.PFC.to.ReviewsTo;
 import com.jorgea.PFC.to.ReviewsWithoutIdTo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -52,7 +53,7 @@ public class ReviewsServiceImpl implements ReviewsService {
         List<GamesWithReviewsTo> gamesWithReviewsTos = new ArrayList<>();
 
         for (GamesModel gamesModel : gamesModelPage.getContent()) {
-            List<ReviewsWithoutIdTo> reviewsWithoutIdTos = new ArrayList<>();
+            List<ReviewsTo> reviewsTos = new ArrayList<>();
             List<GenresNameTo> genresNameTos = new ArrayList<>();
 
             if (gamesModel.getGenres() != null) {
@@ -63,12 +64,14 @@ public class ReviewsServiceImpl implements ReviewsService {
 
             if (gamesModel.getReviews() != null) {
                 for (ReviewsModel reviewsModel : gamesModel.getReviews()) {
-                    reviewsWithoutIdTos.add(new ReviewsWithoutIdTo(
+                    reviewsTos.add(new ReviewsTo(
+                            reviewsModel.getReviewId(),
                             reviewsModel.getReviewText(),
                             reviewsModel.getRating(),
                             reviewsModel.getReviewDate()));
                 }
             }
+
             gamesWithReviewsTos.add(new GamesWithReviewsTo(
                     gamesModel.getTitle(),
                     gamesModel.getDescription(),
@@ -76,7 +79,7 @@ public class ReviewsServiceImpl implements ReviewsService {
                     gamesModel.getReleaseDate(),
                     gamesModel.getRating(),
                     genresNameTos,
-                    reviewsWithoutIdTos
+                    reviewsTos
             ));
         }
         return new PageResponseTo<>(
