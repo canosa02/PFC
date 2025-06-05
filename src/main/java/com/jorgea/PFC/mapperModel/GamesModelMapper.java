@@ -9,8 +9,6 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface GamesModelMapper {
 
-    GamesGenresTo toGamesGenresTo(GamesModel gamesModel);
-
     GamesWithoutGenresTo toGamesWithoutGenresTo(GamesModel gamesModel);
 
     GamesModel toGamesModel(GamesPostTo gamesPostTo);

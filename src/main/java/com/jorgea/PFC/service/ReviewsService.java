@@ -8,4 +8,5 @@ public interface ReviewsService {
 
     PageResponseTo<GamesWithReviewsTo> findAllReviewsWithFilters(String title, String genreName, Pageable pageable);
 
+    GamesWithReviewsTo findAllReviewsInOneGame(Integer gameId);
 }

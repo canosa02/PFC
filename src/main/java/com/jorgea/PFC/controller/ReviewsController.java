@@ -2,6 +2,7 @@ package com.jorgea.PFC.controller;
 
 import com.jorgea.PFC.dto.GamesWithReviewsDto;
 import com.jorgea.PFC.dto.PageResponseDto;
+import com.jorgea.PFC.mapperDto.GamesDtoMapper;
 import com.jorgea.PFC.mapperDto.ReviewsDtoMapper;
 import com.jorgea.PFC.service.ReviewsService;
 import com.jorgea.PFC.to.GamesWithReviewsTo;
@@ -11,6 +12,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,9 +27,12 @@ public class ReviewsController {
 
     private final ReviewsDtoMapper reviewsDtoMapper;
 
-    public ReviewsController(ReviewsService reviewsService, ReviewsDtoMapper reviewsDtoMapper) {
+    private final GamesDtoMapper gamesDtoMapper;
+
+    public ReviewsController(ReviewsService reviewsService, ReviewsDtoMapper reviewsDtoMapper, GamesDtoMapper gamesDtoMapper) {
         this.reviewsService = reviewsService;
         this.reviewsDtoMapper = reviewsDtoMapper;
+        this.gamesDtoMapper = gamesDtoMapper;
     }
 
     @GetMapping("")
@@ -50,4 +55,13 @@ public class ReviewsController {
 
         return ResponseEntity.ok(response);
     }
+
+    @GetMapping("/{gameId}")
+    public ResponseEntity<GamesWithReviewsDto> findAllReviewsInOneGame(@PathVariable Integer gameId){
+        GamesWithReviewsTo gamesWithReviewsTo = reviewsService.findAllReviewsInOneGame(gameId);
+
+        return ResponseEntity.ok(gamesDtoMapper.toGamesWithReviewsDto(gamesWithReviewsTo));
+    }
+
+
 }
