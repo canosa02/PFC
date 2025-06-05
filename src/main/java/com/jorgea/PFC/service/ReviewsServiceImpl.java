@@ -2,6 +2,7 @@ package com.jorgea.PFC.service;
 
 import com.jorgea.PFC.dto.ReviewsWithoutIdDto;
 import com.jorgea.PFC.exception.InstanceNotFoundException;
+import com.jorgea.PFC.mapperModel.ReviewsModelMapper;
 import com.jorgea.PFC.model.GamesModel;
 import com.jorgea.PFC.model.GenresInGamesModel;
 import com.jorgea.PFC.model.ReviewsModel;
@@ -33,9 +34,12 @@ public class ReviewsServiceImpl implements ReviewsService {
 
     private final GamesRepository gamesRepository;
 
-    public ReviewsServiceImpl(ReviewsRepository reviewsRepository, GamesRepository gamesRepository) {
+    private final ReviewsModelMapper reviewsModelMapper;
+
+    public ReviewsServiceImpl(ReviewsRepository reviewsRepository, GamesRepository gamesRepository, ReviewsModelMapper reviewsModelMapper) {
         this.reviewsRepository = reviewsRepository;
         this.gamesRepository = gamesRepository;
+        this.reviewsModelMapper = reviewsModelMapper;
     }
 
     @Override
@@ -69,6 +73,7 @@ public class ReviewsServiceImpl implements ReviewsService {
                 for (ReviewsModel reviewsModel : gamesModel.getReviews()) {
                     reviewsTos.add(new ReviewsTo(
                             reviewsModel.getReviewId(),
+                            reviewsModel.getUser().getUsername(),
                             reviewsModel.getReviewText(),
                             reviewsModel.getRating(),
                             reviewsModel.getReviewDate()));
@@ -111,6 +116,7 @@ public class ReviewsServiceImpl implements ReviewsService {
             for(ReviewsModel reviewsModel : gamesModel.getReviews()){
                 reviewsTos.add(new ReviewsTo(
                         reviewsModel.getReviewId(),
+                        reviewsModel.getUser().getUsername(),
                         reviewsModel.getReviewText(),
                         reviewsModel.getRating(),
                         reviewsModel.getReviewDate()));
@@ -128,13 +134,24 @@ public class ReviewsServiceImpl implements ReviewsService {
         return gamesWithReviewsTo;
     }
 
-//    @Override
-//    public ReviewsTo saveReviews(Integer gameId, CreateReviewsTo createReviewsTo){
-//        GamesModel gamesModel = gamesRepository.findById(gameId).orElseThrow(InstanceNotFoundException::new);
-//
-//        ReviewsModel reviewsModel = reviewsModelMapper.toReviewsModel(createReviewsTo);
-//
-//        return null;
-//    }
+    @Override
+    public ReviewsTo saveReviews(Integer gameId, CreateReviewsTo createReviewsTo){
+        Optional<GamesModel> gamesModelOptional = gamesRepository.findById(gameId);
+
+        if (gamesModelOptional.isEmpty()){
+            throw new InstanceNotFoundException();
+        }
+
+        GamesModel gamesModel1 = gamesModelOptional.get();
+        ReviewsModel reviewsModel = new ReviewsModel();
+
+        reviewsModel.setGame(gamesModel1);
+
+        reviewsModel = reviewsModelMapper.toReviewsModel(createReviewsTo);
+
+        ReviewsModel savedReview = reviewsRepository.save(reviewsModel);
+
+        return reviewsModelMapper.toReviewsTo(savedReview);
+    }
 
 }

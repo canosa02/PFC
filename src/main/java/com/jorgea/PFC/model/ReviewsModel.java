@@ -22,7 +22,9 @@ public class ReviewsModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer reviewId;
 
-    // todo: meter users
+    @ManyToOne
+    @JoinColumn(name="user_id", nullable = false)
+    private UsersModel user;
 
     @ManyToOne
     @JoinColumn(name = "game_id", nullable = false)
@@ -37,8 +39,13 @@ public class ReviewsModel {
     public ReviewsModel() {
     }
 
-    public ReviewsModel(Integer reviewId, GamesModel game, String reviewText, BigDecimal rating, Date reviewDate) {
+    public ReviewsModel(GamesModel game) {
+        this.game = game;
+    }
+
+    public ReviewsModel(Integer reviewId, UsersModel user, GamesModel game, String reviewText, BigDecimal rating, Date reviewDate) {
         this.reviewId = reviewId;
+        this.user = user;
         this.game = game;
         this.reviewText = reviewText;
         this.rating = rating;
@@ -51,6 +58,14 @@ public class ReviewsModel {
 
     public void setReviewId(Integer reviewId) {
         this.reviewId = reviewId;
+    }
+
+    public UsersModel getUser() {
+        return user;
+    }
+
+    public void setUser(UsersModel user) {
+        this.user = user;
     }
 
     public GamesModel getGame() {

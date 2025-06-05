@@ -5,6 +5,8 @@ import com.jorgea.PFC.validation.StringNotBlank;
 import java.math.BigDecimal;
 
 public class CreateReviewsDto {
+    private Integer userId;
+
     @StringNotBlank
     private String reviewText;
 
@@ -13,9 +15,18 @@ public class CreateReviewsDto {
     public CreateReviewsDto() {
     }
 
-    public CreateReviewsDto(String reviewText, BigDecimal rating) {
+    public CreateReviewsDto(Integer userId, String reviewText, BigDecimal rating) {
+        this.userId = userId;
         this.reviewText = reviewText;
         this.rating = rating;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getReviewText() {
@@ -33,5 +44,4 @@ public class CreateReviewsDto {
     public void setRating(BigDecimal rating) {
         this.rating = rating;
     }
-
 }

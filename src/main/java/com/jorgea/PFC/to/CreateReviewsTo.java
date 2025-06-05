@@ -3,6 +3,8 @@ package com.jorgea.PFC.to;
 import java.math.BigDecimal;
 
 public class CreateReviewsTo {
+    private Integer userId;
+
     private String reviewText;
 
     private BigDecimal rating;
@@ -10,9 +12,18 @@ public class CreateReviewsTo {
     public CreateReviewsTo() {
     }
 
-    public CreateReviewsTo(String reviewText, BigDecimal rating) {
+    public CreateReviewsTo(Integer userId, String reviewText, BigDecimal rating) {
+        this.userId = userId;
         this.reviewText = reviewText;
         this.rating = rating;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getReviewText() {

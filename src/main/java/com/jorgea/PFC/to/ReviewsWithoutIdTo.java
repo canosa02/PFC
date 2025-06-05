@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class ReviewsWithoutIdTo {
+    private String userName;
+
     private String reviewText;
 
     private BigDecimal rating;
@@ -13,10 +15,19 @@ public class ReviewsWithoutIdTo {
     public ReviewsWithoutIdTo() {
     }
 
-    public ReviewsWithoutIdTo(String reviewText, BigDecimal rating, Date reviewDate) {
+    public ReviewsWithoutIdTo(String userName, String reviewText, BigDecimal rating, Date reviewDate) {
+        this.userName = userName;
         this.reviewText = reviewText;
         this.rating = rating;
         this.reviewDate = reviewDate;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getReviewText() {

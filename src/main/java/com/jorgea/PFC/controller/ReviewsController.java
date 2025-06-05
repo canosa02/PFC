@@ -1,18 +1,26 @@
 package com.jorgea.PFC.controller;
 
+import com.jorgea.PFC.dto.CreateReviewsDto;
 import com.jorgea.PFC.dto.GamesWithReviewsDto;
 import com.jorgea.PFC.dto.PageResponseDto;
+import com.jorgea.PFC.dto.ReviewsDto;
 import com.jorgea.PFC.mapperDto.GamesDtoMapper;
 import com.jorgea.PFC.mapperDto.ReviewsDtoMapper;
+import com.jorgea.PFC.model.GamesModel;
 import com.jorgea.PFC.service.ReviewsService;
+import com.jorgea.PFC.to.CreateReviewsTo;
 import com.jorgea.PFC.to.GamesWithReviewsTo;
 import com.jorgea.PFC.to.PageResponseTo;
+import com.jorgea.PFC.to.ReviewsTo;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -63,5 +71,14 @@ public class ReviewsController {
         return ResponseEntity.ok(gamesDtoMapper.toGamesWithReviewsDto(gamesWithReviewsTo));
     }
 
+    @PostMapping("/{gameId}")
+    public ResponseEntity<ReviewsDto> saveReviews(@PathVariable Integer gameId, @Valid @RequestBody CreateReviewsDto createReviewsDto){
+        CreateReviewsTo createReviewsTo = reviewsDtoMapper.toCreateReviewsTo(createReviewsDto);
 
+        ReviewsTo reviewsTo = reviewsService.saveReviews(gameId, createReviewsTo);
+
+        ReviewsDto reviewsDto = reviewsDtoMapper.toReviewsDto(reviewsTo);
+
+        return ResponseEntity.ok(reviewsDto);
+    }
 }

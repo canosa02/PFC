@@ -6,6 +6,8 @@ import java.util.Date;
 public class ReviewsTo {
     private Integer reviewId;
 
+    private String userName;
+
     private String reviewText;
 
     private BigDecimal rating;
@@ -15,8 +17,9 @@ public class ReviewsTo {
     public ReviewsTo() {
     }
 
-    public ReviewsTo(Integer reviewId, String reviewText, BigDecimal rating, Date reviewDate) {
+    public ReviewsTo(Integer reviewId, String userName, String reviewText, BigDecimal rating, Date reviewDate) {
         this.reviewId = reviewId;
+        this.userName = userName;
         this.reviewText = reviewText;
         this.rating = rating;
         this.reviewDate = reviewDate;
@@ -28,6 +31,14 @@ public class ReviewsTo {
 
     public void setReviewId(Integer reviewId) {
         this.reviewId = reviewId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getReviewText() {
