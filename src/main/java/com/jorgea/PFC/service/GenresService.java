@@ -9,7 +9,7 @@ import org.springframework.data.domain.Pageable;
 
 public interface GenresService {
 
-    PageResponseTo<GenresWithoutGamesTo> findALlGenresWithFilters(String genreName, Pageable pageable);
+    PageResponseTo<GenresWithoutGamesTo> findAllGenresWithFilters(String genreName, Pageable pageable);
 
     GenresWithoutGamesTo findByGenreId(Integer genreId);
 

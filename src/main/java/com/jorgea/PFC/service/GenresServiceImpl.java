@@ -34,7 +34,7 @@ public class GenresServiceImpl implements GenresService{
     }
 
     @Override
-    public PageResponseTo<GenresWithoutGamesTo> findALlGenresWithFilters(String genreName, Pageable pageable){
+    public PageResponseTo<GenresWithoutGamesTo> findAllGenresWithFilters(String genreName, Pageable pageable){
 
         Specification<GenresModel> spec = Specification.where(null);
 

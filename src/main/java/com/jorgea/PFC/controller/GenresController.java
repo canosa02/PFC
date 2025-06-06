@@ -46,7 +46,7 @@ public class GenresController {
             @RequestParam(required = false) String genreName,
             @PageableDefault(sort = "genreId", direction = Sort.Direction.ASC) Pageable pageable) {
 
-        PageResponseTo<GenresWithoutGamesTo> genresWithoutGamesToPageResponseTo = genresService.findALlGenresWithFilters(genreName, pageable);
+        PageResponseTo<GenresWithoutGamesTo> genresWithoutGamesToPageResponseTo = genresService.findAllGenresWithFilters(genreName, pageable);
 
         List<GenresWithoutGamesDto> genresWithoutGamesDtos = genresWithoutGamesToPageResponseTo.getContent().stream()
                 .map(genresDtoMapper::toGenresWithoutGamesDto)
