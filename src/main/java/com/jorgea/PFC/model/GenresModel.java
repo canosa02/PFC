@@ -20,12 +20,13 @@ public class GenresModel {
     private String genreName;
 
     @OneToMany(mappedBy = "genre", cascade = CascadeType.ALL, orphanRemoval = true, fetch = jakarta.persistence.FetchType.LAZY)
-    private List<GenresInGames> games;
+    private List<GenresInGamesModel> games;
 
     public GenresModel() {
     }
 
-    public GenresModel(String genreName, List<GenresInGames> games) {
+    public GenresModel(int genreId, String genreName, List<GenresInGamesModel> games) {
+        this.genreId = genreId;
         this.genreName = genreName;
         this.games = games;
     }
@@ -46,11 +47,11 @@ public class GenresModel {
         this.genreName = genreName;
     }
 
-    public List<GenresInGames> getGames() {
+    public List<GenresInGamesModel> getGames() {
         return games;
     }
 
-    public void setGames(List<GenresInGames> games) {
+    public void setGames(List<GenresInGamesModel> games) {
         this.games = games;
     }
 

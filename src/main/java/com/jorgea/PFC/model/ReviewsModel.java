@@ -10,17 +10,21 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
-@Table
+@Table(name = "reviews")
 public class ReviewsModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer reviewId;
 
-    // todo: meter users
+    @ManyToOne
+    @JoinColumn(name="user_id", nullable = false)
+    private UsersModel user;
 
     @ManyToOne
     @JoinColumn(name = "game_id", nullable = false)
@@ -30,13 +34,18 @@ public class ReviewsModel {
 
     private BigDecimal rating;
 
-    private LocalDateTime reviewDate;
+    private Date reviewDate;
 
     public ReviewsModel() {
     }
 
-    public ReviewsModel(Integer reviewId, GamesModel game, String reviewText, BigDecimal rating, LocalDateTime reviewDate) {
+    public ReviewsModel(GamesModel game) {
+        this.game = game;
+    }
+
+    public ReviewsModel(Integer reviewId, UsersModel user, GamesModel game, String reviewText, BigDecimal rating, Date reviewDate) {
         this.reviewId = reviewId;
+        this.user = user;
         this.game = game;
         this.reviewText = reviewText;
         this.rating = rating;
@@ -49,6 +58,14 @@ public class ReviewsModel {
 
     public void setReviewId(Integer reviewId) {
         this.reviewId = reviewId;
+    }
+
+    public UsersModel getUser() {
+        return user;
+    }
+
+    public void setUser(UsersModel user) {
+        this.user = user;
     }
 
     public GamesModel getGame() {
@@ -75,11 +92,11 @@ public class ReviewsModel {
         this.rating = rating;
     }
 
-    public LocalDateTime getReviewDate() {
+    public Date getReviewDate() {
         return reviewDate;
     }
 
-    public void setReviewDate(LocalDateTime reviewDate) {
+    public void setReviewDate(Date reviewDate) {
         this.reviewDate = reviewDate;
     }
 }

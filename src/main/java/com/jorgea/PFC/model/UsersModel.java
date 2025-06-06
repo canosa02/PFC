@@ -2,6 +2,8 @@ package com.jorgea.PFC.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "users")
 public class UsersModel {
@@ -11,13 +13,17 @@ public class UsersModel {
     private String username;
     private String password;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<ReviewsModel> reviewsModels;
+
     public UsersModel() {
     }
 
-    public UsersModel(Integer userId, String username, String password) {
+    public UsersModel(Integer userId, String username, String password, List<ReviewsModel> reviewsModels) {
         this.userId = userId;
         this.username = username;
         this.password = password;
+        this.reviewsModels = reviewsModels;
     }
 
     public Integer getUserId() {
@@ -44,12 +50,11 @@ public class UsersModel {
         this.password = password;
     }
 
-    @Override
-    public String toString() {
-        return "UsersModel{" +
-                "userId=" + userId +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+    public List<ReviewsModel> getReviewsModels() {
+        return reviewsModels;
+    }
+
+    public void setReviewsModels(List<ReviewsModel> reviewsModels) {
+        this.reviewsModels = reviewsModels;
     }
 }

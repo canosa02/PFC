@@ -2,7 +2,9 @@ package com.jorgea.PFC.controller;
 
 import com.jorgea.PFC.dto.*;
 import com.jorgea.PFC.mapperDto.GamesDtoMapper;
+import com.jorgea.PFC.mapperDto.ReviewsDtoMapper;
 import com.jorgea.PFC.service.GamesService;
+import com.jorgea.PFC.service.ReviewsService;
 import com.jorgea.PFC.to.*;
 import jakarta.validation.Path;
 import jakarta.validation.Valid;
@@ -20,12 +22,16 @@ import java.util.List;
 public class GamesController {
 
     private final GamesService gamesService;
-
     private final GamesDtoMapper gamesDtoMapper;
+    private final ReviewsService reviewsService;
+    private final ReviewsDtoMapper reviewsDtoMapper;
 
-    public GamesController(GamesService gamesService, GamesDtoMapper gamesDtoMapper) {
+    public GamesController(GamesService gamesService, GamesDtoMapper gamesDtoMapper, 
+                          ReviewsService reviewsService, ReviewsDtoMapper reviewsDtoMapper) {
         this.gamesService = gamesService;
         this.gamesDtoMapper = gamesDtoMapper;
+        this.reviewsService = reviewsService;
+        this.reviewsDtoMapper = reviewsDtoMapper;
     }
 
     @GetMapping("")
@@ -56,6 +62,12 @@ public class GamesController {
         return ResponseEntity.ok(gamesDtoMapper.toGamesGenresDto(gamesGenresTo));
     }
 
+    @GetMapping("/{gameId}/reviews")
+    public ResponseEntity<GamesWithReviewsDto> findAllReviewsInOneGame(@PathVariable Integer gameId) {
+        GamesWithReviewsTo gamesWithReviewsTo = reviewsService.findAllReviewsInOneGame(gameId);
+        return ResponseEntity.ok(gamesDtoMapper.toGamesWithReviewsDto(gamesWithReviewsTo));
+    }
+
     @PostMapping("")
     public ResponseEntity<GamesWithoutGenresDto> saveGames (@Valid @RequestBody GamesPostDto gamesPostDto){
         GamesPostTo gamesPostTo = gamesDtoMapper.toGamesPostTo(gamesPostDto);
@@ -72,6 +84,14 @@ public class GamesController {
         GamesGenresDto gamesGenresDto = gamesDtoMapper.toGamesGenresDto(gamesGenresTo);
 
         return ResponseEntity.ok(gamesGenresDto);
+    }
+
+    @PostMapping("/{gameId}/reviews")
+    public ResponseEntity<ReviewsDto> saveReview(@PathVariable Integer gameId, @Valid @RequestBody CreateReviewsDto createReviewsDto) {
+        CreateReviewsTo createReviewsTo = reviewsDtoMapper.toCreateReviewsTo(createReviewsDto);
+        ReviewsTo reviewsTo = reviewsService.saveReviews(gameId, createReviewsTo);
+        ReviewsDto reviewsDto = reviewsDtoMapper.toReviewsDto(reviewsTo);
+        return ResponseEntity.status(HttpStatus.CREATED).body(reviewsDto);
     }
 
     @PutMapping("/{gameId}")

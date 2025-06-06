@@ -4,7 +4,7 @@ import com.jorgea.PFC.exception.ConflictException;
 import com.jorgea.PFC.exception.InstanceNotFoundException;
 import com.jorgea.PFC.mapperModel.GamesModelMapper;
 import com.jorgea.PFC.model.GamesModel;
-import com.jorgea.PFC.model.GenresInGames;
+import com.jorgea.PFC.model.GenresInGamesModel;
 import com.jorgea.PFC.model.GenresModel;
 import com.jorgea.PFC.repository.GamesRepository;
 import com.jorgea.PFC.repository.GenresInGamesRepository;
@@ -62,8 +62,8 @@ public class GamesServiceImpl implements GamesService {
             List<GenresNameTo> genresNameTos = new ArrayList<>();
 
             if (gamesModel.getGenres() != null) {
-                for (GenresInGames genresInGames : gamesModel.getGenres()) {
-                    genresNameTos.add(new GenresNameTo(genresInGames.getGenre().getGenreName()));
+                for (GenresInGamesModel genresInGamesModel : gamesModel.getGenres()) {
+                    genresNameTos.add(new GenresNameTo(genresInGamesModel.getGenre().getGenreName()));
                 }
             }
             gamesGenresTos.add(new GamesGenresTo(
@@ -104,8 +104,8 @@ public class GamesServiceImpl implements GamesService {
 
         List<GenresNameTo> genresNameTos = new ArrayList<>();
 
-        for (GenresInGames genresInGames : gamesModel1.getGenres()) {
-            genresNameTos.add(new GenresNameTo(genresInGames.getGenre().getGenreName()));
+        for (GenresInGamesModel genresInGamesModel : gamesModel1.getGenres()) {
+            genresNameTos.add(new GenresNameTo(genresInGamesModel.getGenre().getGenreName()));
         }
 
         gamesGenresTo.setGenres(genresNameTos);
@@ -126,7 +126,7 @@ public class GamesServiceImpl implements GamesService {
     public GamesGenresTo addGenresToGames(Integer gameId, Integer genreId){
         Optional<GamesModel> gamesModelOptional = gamesRepository.findById(gameId);
         Optional<GenresModel> genresModelOptional = genresRepository.findById(genreId);
-        Optional<GenresInGames> genresInGamesOptional = genresInGamesRepository.findByGame_GameIdAndGenre_GenreId(gameId, genreId);
+        Optional<GenresInGamesModel> genresInGamesOptional = genresInGamesRepository.findByGame_GameIdAndGenre_GenreId(gameId, genreId);
 
         if(gamesModelOptional.isEmpty() || genresModelOptional.isEmpty()){
             throw new InstanceNotFoundException();
@@ -150,8 +150,8 @@ public class GamesServiceImpl implements GamesService {
         List<GenresNameTo> genresNameTos = new ArrayList<>();
 
         if (gamesModel.getGenres() != null) {
-            for (GenresInGames genresInGames : gamesModel.getGenres()) {
-                genresNameTos.add(new GenresNameTo(genresInGames.getGenre().getGenreName()));
+            for (GenresInGamesModel genresInGamesModel : gamesModel.getGenres()) {
+                genresNameTos.add(new GenresNameTo(genresInGamesModel.getGenre().getGenreName()));
             }
         }
 
@@ -161,11 +161,11 @@ public class GamesServiceImpl implements GamesService {
 
         gamesGenresTo.setGenres(genresNameTos);
 
-        GenresInGames genresInGames = new GenresInGames();
-        genresInGames.setGame(gamesModel);
-        genresInGames.setGenre(genresModel);
+        GenresInGamesModel genresInGamesModel = new GenresInGamesModel();
+        genresInGamesModel.setGame(gamesModel);
+        genresInGamesModel.setGenre(genresModel);
 
-        genresInGamesRepository.save(genresInGames);
+        genresInGamesRepository.save(genresInGamesModel);
 
         return gamesGenresTo;
     }
@@ -238,14 +238,14 @@ public class GamesServiceImpl implements GamesService {
     public void deleteGenresFromGames(Integer gameId, Integer genreId) {
         Optional<GamesModel> gamesModelOptional = gamesRepository.findById(gameId);
         Optional<GenresModel> genresModelOptional = genresRepository.findById(genreId);
-        Optional<GenresInGames> genresInGamesOptional = genresInGamesRepository.findByGame_GameIdAndGenre_GenreId(gameId, genreId);
+        Optional<GenresInGamesModel> genresInGamesOptional = genresInGamesRepository.findByGame_GameIdAndGenre_GenreId(gameId, genreId);
 
         if (gamesModelOptional.isEmpty() || genresModelOptional.isEmpty() || genresInGamesOptional.isEmpty()) {
             throw new InstanceNotFoundException();
         }
 
-        GenresInGames genresInGames = genresInGamesOptional.get();
+        GenresInGamesModel genresInGamesModel = genresInGamesOptional.get();
 
-        genresInGamesRepository.delete(genresInGames);
+        genresInGamesRepository.delete(genresInGamesModel);
     }
 }
