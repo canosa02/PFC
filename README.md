@@ -28,10 +28,10 @@ Por Jorge Álvarez Canosa
 La aplicación maneja las siguientes entidades principales:
 
 - **Usuarios**: Almacena información de los usuarios  
-- **Juegos**: Almacena información de los videojuegos  
-- **Géneros**: Gestiona los géneros disponibles  
-- **Reseñas**: Almacena reseñas y puntuaciones de los usuarios  
-- **Generos_en_Juegos**: Relación muchos-a-muchos entre juegos y géneros
+- **Games**: Almacena información de los videojuegos  
+- **Genres**: Gestiona los géneros disponibles  
+- **Reviews**: Almacena reseñas y puntuaciones de los usuarios  
+- **Genres_In_Games**: Relación muchos-a-muchos entre juegos y géneros
 
 ## Guía de instalación
 ### IntelliJ IDEA
