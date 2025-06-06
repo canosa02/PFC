@@ -12,11 +12,11 @@ Por Jorge Álvarez Canosa
 
 ### Technical Stack
 - **Backend**: Java con Spring Boot
-- **Database**: PostgreSQL
+- **Base de datos**: PostgreSQL
 - **Build Tool**: Maven
-- **API Documentation**: SpringDoc OpenAPI (Swagger)
+- **Documentación API**: SpringDoc OpenAPI (Swagger)
 
-### Key Features
+### Features Importantes
 - Endpoints RESTful para operaciones CRUD  
 - Paginación para una recuperación eficiente de datos  
 - Validación de datos y manejo de errores  
@@ -24,7 +24,7 @@ Por Jorge Álvarez Canosa
 - MapStruct para el mapeo de objetos  
 - JPA/Hibernate para operaciones sobre la base de datos  
 
-### Database Schema
+### Base de datos
 La aplicación maneja las siguientes entidades principales:
 
 - **Usuarios**: Almacena información de los usuarios  
@@ -33,9 +33,9 @@ La aplicación maneja las siguientes entidades principales:
 - **Reseñas**: Almacena reseñas y puntuaciones de los usuarios  
 - **Generos_en_Juegos**: Relación muchos-a-muchos entre juegos y géneros
 
-## Installation Guide
+## Guía de instalación
 ### IntelliJ IDEA
-#### 📥 Prerequisites
+#### 📥 Prerequisitos
 
 - Java JDK 17 o superior  
   👉 Descarga desde: [Oracle Java Downloads](https://www.oracle.com/java/technologies/downloads/)
@@ -109,7 +109,7 @@ wsl --list --verbose
 Deberías ver tu distribución con la versión 2.
 ```
 
-#### Troubleshooting Common Issues
+#### Errores comunes
 - **Virtual Machine Platform Error**: Asgurate de que la virtualización está activada en la BIOS
 - **Error 0x80370102**: Esto indica que la virtualización está deshabilitada
 
@@ -122,7 +122,7 @@ Ejecuta el instalador descargado y sigue los pasos del asistente de instalación
 
 ##### 3. Configuración de PostgreSQL
 1. Ve a la sección **Images** en Podman Desktop  
-2. Haz clic en **Pull an image**  
+2. Haz clic en **Pull an image**
 3. Busca **postgres**  
 4. Descarga la imagen oficial de PostgreSQL  
 5. Crea un nuevo contenedor desde la imagen usando el botón de reproducción
