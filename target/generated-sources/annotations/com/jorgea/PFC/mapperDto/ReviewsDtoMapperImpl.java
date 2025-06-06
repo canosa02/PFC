@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-06-06T05:27:05+0200",
+    date = "2025-06-06T09:20:52+0200",
     comments = "version: 1.6.3, compiler: Eclipse JDT (IDE) 3.42.0.v20250514-1000, environment: Java 21.0.7 (Eclipse Adoptium)"
 )
 @Component
@@ -31,11 +31,11 @@ public class ReviewsDtoMapperImpl implements ReviewsDtoMapper {
 
         ReviewsDto reviewsDto = new ReviewsDto();
 
+        reviewsDto.setReviewId( reviewsTo.getReviewId() );
+        reviewsDto.setUserName( reviewsTo.getUserName() );
+        reviewsDto.setReviewText( reviewsTo.getReviewText() );
         reviewsDto.setRating( reviewsTo.getRating() );
         reviewsDto.setReviewDate( reviewsTo.getReviewDate() );
-        reviewsDto.setReviewId( reviewsTo.getReviewId() );
-        reviewsDto.setReviewText( reviewsTo.getReviewText() );
-        reviewsDto.setUserName( reviewsTo.getUserName() );
 
         return reviewsDto;
     }
@@ -48,13 +48,13 @@ public class ReviewsDtoMapperImpl implements ReviewsDtoMapper {
 
         GamesWithReviewsDto gamesWithReviewsDto = new GamesWithReviewsDto();
 
+        gamesWithReviewsDto.setTitle( gamesWithReviewsTo.getTitle() );
         gamesWithReviewsDto.setDescription( gamesWithReviewsTo.getDescription() );
         gamesWithReviewsDto.setDeveloper( gamesWithReviewsTo.getDeveloper() );
-        gamesWithReviewsDto.setGenres( genresNameToListToGenresNameDtoList( gamesWithReviewsTo.getGenres() ) );
-        gamesWithReviewsDto.setRating( gamesWithReviewsTo.getRating() );
         gamesWithReviewsDto.setReleaseDate( gamesWithReviewsTo.getReleaseDate() );
+        gamesWithReviewsDto.setRating( gamesWithReviewsTo.getRating() );
+        gamesWithReviewsDto.setGenres( genresNameToListToGenresNameDtoList( gamesWithReviewsTo.getGenres() ) );
         gamesWithReviewsDto.setReviews( reviewsToListToReviewsDtoList( gamesWithReviewsTo.getReviews() ) );
-        gamesWithReviewsDto.setTitle( gamesWithReviewsTo.getTitle() );
 
         return gamesWithReviewsDto;
     }
@@ -67,9 +67,9 @@ public class ReviewsDtoMapperImpl implements ReviewsDtoMapper {
 
         CreateReviewsTo createReviewsTo = new CreateReviewsTo();
 
-        createReviewsTo.setRating( createReviewsDto.getRating() );
-        createReviewsTo.setReviewText( createReviewsDto.getReviewText() );
         createReviewsTo.setUserId( createReviewsDto.getUserId() );
+        createReviewsTo.setReviewText( createReviewsDto.getReviewText() );
+        createReviewsTo.setRating( createReviewsDto.getRating() );
 
         return createReviewsTo;
     }
@@ -82,8 +82,8 @@ public class ReviewsDtoMapperImpl implements ReviewsDtoMapper {
 
         UpdateReviewsTo updateReviewsTo = new UpdateReviewsTo();
 
-        updateReviewsTo.setRating( updateReviewsDto.getRating() );
         updateReviewsTo.setReviewText( updateReviewsDto.getReviewText() );
+        updateReviewsTo.setRating( updateReviewsDto.getRating() );
 
         return updateReviewsTo;
     }

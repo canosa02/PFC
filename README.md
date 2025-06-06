@@ -1,23 +1,57 @@
-
-# Proyecto Final de Ciclo 
+# PorkiGames
 Por Jorge Álvarez Canosa
 
-## Guía de Instalación 
-### Intellij
-#### 📥 Requisitos Previos
+## Project Description
+**PorkiGames** es una aplicación desarrollada con **Spring Boot** que proporciona una **API REST** para la gestión de reseñas de videojuegos. La plataforma permite a los usuarios:
 
-- Tener Java instalado (JDK 17 o superior recomendado).  
-  Puedes descargarlo desde: [https://jdk.java.net/]([https://jdk.java.net/](https://www.oracle.com/java/technologies/downloads/))
+- 🔍 Navegar y buscar juegos por título y género  
+- 📄 Ver detalles del juego: descripción, desarrollador, fecha de lanzamiento y puntuación  
+- 📝 Leer y escribir reseñas de juegos  
+- ⭐ Valorar juegos  
+- 🎮 Gestionar géneros de videojuegos  
+
+### Technical Stack
+- **Backend**: Java con Spring Boot
+- **Database**: PostgreSQL
+- **Build Tool**: Maven
+- **API Documentation**: SpringDoc OpenAPI (Swagger)
+
+### Key Features
+- Endpoints RESTful para operaciones CRUD  
+- Paginación para una recuperación eficiente de datos  
+- Validación de datos y manejo de errores  
+- Patrón DTO para la transferencia de datos  
+- MapStruct para el mapeo de objetos  
+- JPA/Hibernate para operaciones sobre la base de datos  
+
+### Database Schema
+La aplicación maneja las siguientes entidades principales:
+
+- **Usuarios**: Almacena información de los usuarios  
+- **Juegos**: Almacena información de los videojuegos  
+- **Géneros**: Gestiona los géneros disponibles  
+- **Reseñas**: Almacena reseñas y puntuaciones de los usuarios  
+- **Generos_en_Juegos**: Relación muchos-a-muchos entre juegos y géneros
+
+## Installation Guide
+### IntelliJ IDEA
+#### 📥 Prerequisites
+
+- Java JDK 17 o superior  
+  👉 Descarga desde: [Oracle Java Downloads](https://www.oracle.com/java/technologies/downloads/)
 
 ---
-##### 1. Ve al sitio oficial de descarga:  
+#### 1. **Descargar IntelliJ IDEA**  
    [https://www.jetbrains.com/idea/download](https://www.jetbrains.com/idea/download)
 
-##### 2. Debemos movernos hasta la parte inferior de la pestaña y darle click en el botón download de la Community Edition.
-   
-##### 3. Ejecuta el instalador y sigue los pasos del asistente de instalación
+#### 2. **Seleccionar la Edición Community**  
+   Haz clic en el botón de descarga correspondiente.
 
-##### 4. Una vez terminada la instalación ya se podría abrir el programa y ver el código
+#### 3. **Instalar IntelliJ**  
+   Ejecuta el instalador y sigue las instrucciones.
+
+#### 4. **Abrir el proyecto**  
+   Abre IntelliJ, selecciona el proyecto y espera a que cargue las dependencias Maven.
 
 ### Podman
 #### 📥 Requisitos Previos
@@ -58,47 +92,44 @@ Abre PowerShell y ejecuta:
 ```powershell
 wsl --set-default-version 2
 ```
-Esto configurará WSL 2 como la versión predeterminada para futuras instalaciones de distribuciones de Linux.
 
-##### 6. Instalar una Distribución de Linux
-Puedes instalar una distribución de Linux desde la Microsoft Store. Por ejemplo, para instalar Ubuntu:
+##### 6. Instalación de Linux Distribution
+1. Abre Microsoft Store
+2. Busca "Ubuntu"
+3. Selecciona tu versión de Ubuntu predilecta
+4. Clicka "Get" para instalarlo
 
-Abre la Microsoft Store.
-
-Busca "Ubuntu" y selecciona la versión deseada.
-
-Haz clic en "Obtener" para instalarla.
-
-##### 7. Verificar la Instalación
+##### 7. Verifica la instalación
 Después de instalar la distribución:
-
-Ábrela desde el menú de inicio.
-
-Se te pedirá crear un nombre de usuario y contraseña para la distribución de Linux.
-
-Una vez configurado, puedes verificar que estás utilizando WSL 2 ejecutando:
-
+1. Ábrela desde el menú Start
+2. Crea un nombre de usuario y contraseña
+3. Verifica WSL 2 está funcionando:
 ```powershell
 wsl --list --verbose
 Deberías ver tu distribución con la versión 2.
 ```
 
-🛠️ Solución de Problemas Comunes
-Error al habilitar la Plataforma de Máquina Virtual: Asegúrate de que la virtualización esté habilitada en la BIOS. Consulta el manual de tu placa base o el sitio web del fabricante para obtener instrucciones específicas.
+#### Troubleshooting Common Issues
+- **Virtual Machine Platform Error**: Asgurate de que la virtualización está activada en la BIOS
+- **Error 0x80370102**: Esto indica que la virtualización está deshabilitada
 
-Error 0x80370102 al iniciar la distribución: Este error indica que la virtualización no está habilitada. Verifica la configuración de la BIOS.
+#### Descarga de Podman
+##### 1. Descarga Podman:
+Visita [https://podman.io](https://podman.io) y descarga el instalador de Windows
 
-#### Instación de Podman
-##### 1. Ve al sitio oficial y descarga el instalador para Windows:
-[https://podman.io](https://podman.io)
+##### 2. Instalación de Podman:
+Ejecuta el instalador descargado y sigue los pasos del asistente de instalación.
 
-##### 2. Una vez descargado el archivo debes ejecutarlo y seguir los pasos indicados
+##### 3. Configuración de PostgreSQL
+1. Ve a la sección **Images** en Podman Desktop  
+2. Haz clic en **Pull an image**  
+3. Busca **postgres**  
+4. Descarga la imagen oficial de PostgreSQL  
+5. Crea un nuevo contenedor desde la imagen usando el botón de reproducción
 
-##### 3. Creación de images
-Debes dirigirte a la parte de images en podman. 
-En este apartado puedes añadir todas las imágenes de bases de datos que necesites, en mi caso usaré postgresql.
-Debes entrar en la opción pull, escribir postgres y descargar la primera opción
+### Configuración de la Base de Datos
+Después de instalar PostgreSQL a través de Podman:
 
-##### 4. Iniciar un container 
-A partir de la imagen de postgres crearemos un contenedor dandole al botón de play
-
+1. El esquema de la base de datos se creará automáticamente en la primera ejecución  
+2. Las credenciales por defecto están en el archivo `application.properties`  
+3. Se pueden cargar datos de ejemplo usando los scripts SQL proporcionados  

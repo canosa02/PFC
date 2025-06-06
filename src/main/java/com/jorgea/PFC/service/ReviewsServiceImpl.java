@@ -158,7 +158,6 @@ public class ReviewsServiceImpl implements ReviewsService {
         reviewsModel.setRating(createReviewsTo.getRating());
         reviewsModel.setReviewDate(new Date());
 
-        // Fetch and set the user
         UsersModel user = usersRepository.findById(createReviewsTo.getUserId())
                 .orElseThrow(() -> new InstanceNotFoundException());
         reviewsModel.setUser(user);
