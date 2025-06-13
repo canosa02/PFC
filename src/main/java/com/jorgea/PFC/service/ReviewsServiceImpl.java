@@ -24,8 +24,8 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -158,7 +158,7 @@ public class ReviewsServiceImpl implements ReviewsService {
         reviewsModel.setGame(gamesModel);
         reviewsModel.setReviewText(createReviewsTo.getReviewText());
         reviewsModel.setRating(createReviewsTo.getRating());
-        reviewsModel.setReviewDate(new Date());
+        reviewsModel.setReviewDate(LocalDate.now());
 
         UsersModel user = usersRepository.findById(createReviewsTo.getUserId())
                 .orElseThrow(() -> new InstanceNotFoundException());

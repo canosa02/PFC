@@ -6,13 +6,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
 @Table(name = "reviews")
@@ -34,7 +31,7 @@ public class ReviewsModel {
 
     private BigDecimal rating;
 
-    private Date reviewDate;
+    private LocalDate reviewDate;
 
     public ReviewsModel() {
     }
@@ -43,7 +40,7 @@ public class ReviewsModel {
         this.game = game;
     }
 
-    public ReviewsModel(Integer reviewId, UsersModel user, GamesModel game, String reviewText, BigDecimal rating, Date reviewDate) {
+    public ReviewsModel(Integer reviewId, UsersModel user, GamesModel game, String reviewText, BigDecimal rating, LocalDate reviewDate) {
         this.reviewId = reviewId;
         this.user = user;
         this.game = game;
@@ -92,11 +89,11 @@ public class ReviewsModel {
         this.rating = rating;
     }
 
-    public Date getReviewDate() {
+    public LocalDate getReviewDate() {
         return reviewDate;
     }
 
-    public void setReviewDate(Date reviewDate) {
+    public void setReviewDate(LocalDate reviewDate) {
         this.reviewDate = reviewDate;
     }
 }

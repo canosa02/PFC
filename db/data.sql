@@ -86,3 +86,13 @@ INSERT INTO genres (genre_name) VALUES
 ('Mystery'),
 ('Crafting Survival');
 
+insert into genres_in_games (game_id, genre_id) values
+('1','1'),
+('2','2');
+
+INSERT INTO reviews (game_id, user_id, review_text, rating, review_date )VALUES
+(1, 1, 'Gran juego, muy entretenido.', 8.5, CURRENT_DATE),
+(2, 2, 'QUE JUEGAZOOOOOOO', 10, CURRENT_DATE),
+(1, 1, 'Meh', 6, CURRENT_DATE),
+(2, 1, 'LOL', 5, CURRENT_DATE);
+
