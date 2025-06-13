@@ -1,12 +1,29 @@
 package com.jorgea.PFC.controller;
 
-import com.jorgea.PFC.dto.*;
+import com.jorgea.PFC.dto.CreateReviewsDto;
+import com.jorgea.PFC.dto.GamesGenresDto;
+import com.jorgea.PFC.dto.GamesPostDto;
+import com.jorgea.PFC.dto.GamesPutDto;
+import com.jorgea.PFC.dto.GamesWithReviewsDto;
+import com.jorgea.PFC.dto.GamesPatchDto;
+import com.jorgea.PFC.dto.GamesWithoutGenresDto;
+import com.jorgea.PFC.dto.PageResponseDto;
+import com.jorgea.PFC.dto.ReviewsDto;
+import com.jorgea.PFC.dto.UpdateReviewsDto;
 import com.jorgea.PFC.mapperDto.GamesDtoMapper;
 import com.jorgea.PFC.mapperDto.ReviewsDtoMapper;
 import com.jorgea.PFC.service.GamesService;
 import com.jorgea.PFC.service.ReviewsService;
-import com.jorgea.PFC.to.*;
-import jakarta.validation.Path;
+import com.jorgea.PFC.to.CreateReviewsTo;
+import com.jorgea.PFC.to.GamesGenresTo;
+import com.jorgea.PFC.to.GamesWithReviewsTo;
+import com.jorgea.PFC.to.PageResponseTo;
+import com.jorgea.PFC.to.ReviewsTo;
+import com.jorgea.PFC.to.UpdateReviewsTo;
+import com.jorgea.PFC.to.GamesPostTo;
+import com.jorgea.PFC.to.GamesPutTo;
+import com.jorgea.PFC.to.GamesPatchTo;
+import com.jorgea.PFC.to.GamesWithoutGenresTo;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -103,6 +120,14 @@ public class GamesController {
         return ResponseEntity.ok(gamesDtoMapper.toGamesWithoutGenresDto(gamesWithoutGenresTo));
     }
 
+    @PutMapping("/{gameId}/reviews/{reviewId}")
+    public ResponseEntity<ReviewsDto> updateReview(@PathVariable Integer reviewId, @Valid @RequestBody UpdateReviewsDto updateReviewsDto) {
+        UpdateReviewsTo updateReviewsTo = reviewsDtoMapper.toUpdateReviewsTo(updateReviewsDto);
+        ReviewsTo reviewsTo = reviewsService.updateReview(reviewId, updateReviewsTo);
+        ReviewsDto reviewsDto = reviewsDtoMapper.toReviewsDto(reviewsTo);
+        return ResponseEntity.ok(reviewsDto);
+    }
+
     @PatchMapping("/{gameId}")
     public ResponseEntity<GamesWithoutGenresDto> partialUpdateGames(@PathVariable Integer gameId, @Valid @RequestBody GamesPatchDto gamesPatchDto){
         GamesPatchTo gamesPatchTo = gamesDtoMapper.toGamesPatchTo(gamesPatchDto);
@@ -110,6 +135,14 @@ public class GamesController {
         GamesWithoutGenresTo gamesWithoutGenresTo = gamesService.partialUpdateGames(gameId, gamesPatchTo);
 
         return ResponseEntity.ok(gamesDtoMapper.toGamesWithoutGenresDto(gamesWithoutGenresTo));
+    }
+
+    @PatchMapping("/{gameId}/reviews/{reviewId}")
+    public ResponseEntity<ReviewsDto> patchReview(@PathVariable Integer reviewId, @Valid @RequestBody UpdateReviewsDto updateReviewsDto) {
+        UpdateReviewsTo updateReviewsTo = reviewsDtoMapper.toUpdateReviewsTo(updateReviewsDto);
+        ReviewsTo reviewsTo = reviewsService.patchReview(reviewId, updateReviewsTo);
+        ReviewsDto reviewsDto = reviewsDtoMapper.toReviewsDto(reviewsTo);
+        return ResponseEntity.ok(reviewsDto);
     }
 
     @DeleteMapping("/{gameId}")
@@ -122,6 +155,13 @@ public class GamesController {
     @DeleteMapping("/{gameId}/genres/{genreId}")
     public ResponseEntity<Void> deleteGenresFromGames(@PathVariable Integer gameId, @PathVariable Integer genreId){
         gamesService.deleteGenresFromGames(gameId, genreId);
+
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/{gameId}/reviews/{reviewId}")
+    public ResponseEntity<Void> deleteReview(@PathVariable Integer reviewId) {
+        reviewsService.deleteReview(reviewId);
 
         return ResponseEntity.ok().build();
     }

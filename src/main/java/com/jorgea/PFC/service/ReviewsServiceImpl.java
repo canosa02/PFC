@@ -1,7 +1,7 @@
 package com.jorgea.PFC.service;
 
-import com.jorgea.PFC.dto.ReviewsWithoutIdDto;
 import com.jorgea.PFC.exception.InstanceNotFoundException;
+import com.jorgea.PFC.exception.ConflictException;
 import com.jorgea.PFC.mapperModel.ReviewsModelMapper;
 import com.jorgea.PFC.model.GamesModel;
 import com.jorgea.PFC.model.GenresInGamesModel;
@@ -12,12 +12,10 @@ import com.jorgea.PFC.repository.ReviewsRepository;
 import com.jorgea.PFC.repository.UsersRepository;
 import com.jorgea.PFC.specification.GamesSpecification;
 import com.jorgea.PFC.to.CreateReviewsTo;
-import com.jorgea.PFC.to.GamesGenresTo;
 import com.jorgea.PFC.to.GamesWithReviewsTo;
 import com.jorgea.PFC.to.GenresNameTo;
 import com.jorgea.PFC.to.PageResponseTo;
 import com.jorgea.PFC.to.ReviewsTo;
-import com.jorgea.PFC.to.ReviewsWithoutIdTo;
 import com.jorgea.PFC.to.UpdateReviewsTo;
 
 import org.springframework.data.domain.Page;
@@ -148,6 +146,10 @@ public class ReviewsServiceImpl implements ReviewsService {
 
         if (gamesModelOptional.isEmpty()){
             throw new InstanceNotFoundException();
+        }
+
+        if (reviewsRepository.existsByUser_UserIdAndGame_GameId(createReviewsTo.getUserId(), gameId)) {
+            throw new ConflictException();
         }
 
         GamesModel gamesModel = gamesModelOptional.get();

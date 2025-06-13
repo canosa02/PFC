@@ -1,6 +1,12 @@
 package com.jorgea.PFC.service;
 
-import com.jorgea.PFC.to.*;
+import com.jorgea.PFC.to.GamesGenresTo;
+import com.jorgea.PFC.to.GamesPostTo;
+import com.jorgea.PFC.to.GamesPutTo;
+import com.jorgea.PFC.to.GamesPatchTo;
+import com.jorgea.PFC.to.GamesWithoutGenresTo;
+import com.jorgea.PFC.to.PageResponseTo;
+
 import org.springframework.data.domain.Pageable;
 
 

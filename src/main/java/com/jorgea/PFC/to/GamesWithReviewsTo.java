@@ -1,8 +1,5 @@
 package com.jorgea.PFC.to;
 
-import com.jorgea.PFC.dto.GenresDto;
-import com.jorgea.PFC.dto.ReviewsDto;
-
 import java.util.List;
 
 public class GamesWithReviewsTo {

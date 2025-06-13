@@ -23,8 +23,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-06-06T14:26:13+0200",
-    comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.5 (Oracle Corporation)"
+    date = "2025-06-13T08:58:20+0200",
+    comments = "version: 1.6.3, compiler: Eclipse JDT (IDE) 3.42.0.v20250514-1000, environment: Java 21.0.7 (Eclipse Adoptium)"
 )
 @Component
 public class GamesDtoMapperImpl implements GamesDtoMapper {
@@ -37,13 +37,13 @@ public class GamesDtoMapperImpl implements GamesDtoMapper {
 
         GamesGenresDto gamesGenresDto = new GamesGenresDto();
 
-        gamesGenresDto.setGameId( gamesGenresTo.getGameId() );
-        gamesGenresDto.setTitle( gamesGenresTo.getTitle() );
         gamesGenresDto.setDescription( gamesGenresTo.getDescription() );
         gamesGenresDto.setDeveloper( gamesGenresTo.getDeveloper() );
-        gamesGenresDto.setReleaseDate( gamesGenresTo.getReleaseDate() );
-        gamesGenresDto.setRating( gamesGenresTo.getRating() );
+        gamesGenresDto.setGameId( gamesGenresTo.getGameId() );
         gamesGenresDto.setGenres( genresNameToListToGenresNameDtoList( gamesGenresTo.getGenres() ) );
+        gamesGenresDto.setRating( gamesGenresTo.getRating() );
+        gamesGenresDto.setReleaseDate( gamesGenresTo.getReleaseDate() );
+        gamesGenresDto.setTitle( gamesGenresTo.getTitle() );
 
         return gamesGenresDto;
     }
@@ -56,11 +56,11 @@ public class GamesDtoMapperImpl implements GamesDtoMapper {
 
         GamesPostTo gamesPostTo = new GamesPostTo();
 
-        gamesPostTo.setTitle( gamesPostDto.getTitle() );
         gamesPostTo.setDescription( gamesPostDto.getDescription() );
         gamesPostTo.setDeveloper( gamesPostDto.getDeveloper() );
-        gamesPostTo.setReleaseDate( gamesPostDto.getReleaseDate() );
         gamesPostTo.setRating( gamesPostDto.getRating() );
+        gamesPostTo.setReleaseDate( gamesPostDto.getReleaseDate() );
+        gamesPostTo.setTitle( gamesPostDto.getTitle() );
 
         return gamesPostTo;
     }
@@ -73,12 +73,12 @@ public class GamesDtoMapperImpl implements GamesDtoMapper {
 
         GamesWithoutGenresDto gamesWithoutGenresDto = new GamesWithoutGenresDto();
 
-        gamesWithoutGenresDto.setGameId( gamesWithoutGenresTo.getGameId() );
-        gamesWithoutGenresDto.setTitle( gamesWithoutGenresTo.getTitle() );
         gamesWithoutGenresDto.setDescription( gamesWithoutGenresTo.getDescription() );
         gamesWithoutGenresDto.setDeveloper( gamesWithoutGenresTo.getDeveloper() );
-        gamesWithoutGenresDto.setReleaseDate( gamesWithoutGenresTo.getReleaseDate() );
+        gamesWithoutGenresDto.setGameId( gamesWithoutGenresTo.getGameId() );
         gamesWithoutGenresDto.setRating( gamesWithoutGenresTo.getRating() );
+        gamesWithoutGenresDto.setReleaseDate( gamesWithoutGenresTo.getReleaseDate() );
+        gamesWithoutGenresDto.setTitle( gamesWithoutGenresTo.getTitle() );
 
         return gamesWithoutGenresDto;
     }
@@ -91,11 +91,11 @@ public class GamesDtoMapperImpl implements GamesDtoMapper {
 
         GamesPutTo gamesPutTo = new GamesPutTo();
 
-        gamesPutTo.setTitle( gamesPutDto.getTitle() );
         gamesPutTo.setDescription( gamesPutDto.getDescription() );
         gamesPutTo.setDeveloper( gamesPutDto.getDeveloper() );
-        gamesPutTo.setReleaseDate( gamesPutDto.getReleaseDate() );
         gamesPutTo.setRating( gamesPutDto.getRating() );
+        gamesPutTo.setReleaseDate( gamesPutDto.getReleaseDate() );
+        gamesPutTo.setTitle( gamesPutDto.getTitle() );
 
         return gamesPutTo;
     }
@@ -108,11 +108,11 @@ public class GamesDtoMapperImpl implements GamesDtoMapper {
 
         GamesPatchTo gamesPatchTo = new GamesPatchTo();
 
-        gamesPatchTo.setTitle( gamesPatchDto.getTitle() );
         gamesPatchTo.setDescription( gamesPatchDto.getDescription() );
         gamesPatchTo.setDeveloper( gamesPatchDto.getDeveloper() );
-        gamesPatchTo.setReleaseDate( gamesPatchDto.getReleaseDate() );
         gamesPatchTo.setRating( gamesPatchDto.getRating() );
+        gamesPatchTo.setReleaseDate( gamesPatchDto.getReleaseDate() );
+        gamesPatchTo.setTitle( gamesPatchDto.getTitle() );
 
         return gamesPatchTo;
     }

@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-06-06T14:26:13+0200",
-    comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.5 (Oracle Corporation)"
+    date = "2025-06-13T08:58:21+0200",
+    comments = "version: 1.6.3, compiler: Eclipse JDT (IDE) 3.42.0.v20250514-1000, environment: Java 21.0.7 (Eclipse Adoptium)"
 )
 @Component
 public class GamesModelMapperImpl implements GamesModelMapper {
@@ -22,12 +22,12 @@ public class GamesModelMapperImpl implements GamesModelMapper {
 
         GamesWithoutGenresTo gamesWithoutGenresTo = new GamesWithoutGenresTo();
 
-        gamesWithoutGenresTo.setGameId( gamesModel.getGameId() );
-        gamesWithoutGenresTo.setTitle( gamesModel.getTitle() );
         gamesWithoutGenresTo.setDescription( gamesModel.getDescription() );
         gamesWithoutGenresTo.setDeveloper( gamesModel.getDeveloper() );
-        gamesWithoutGenresTo.setReleaseDate( gamesModel.getReleaseDate() );
+        gamesWithoutGenresTo.setGameId( gamesModel.getGameId() );
         gamesWithoutGenresTo.setRating( gamesModel.getRating() );
+        gamesWithoutGenresTo.setReleaseDate( gamesModel.getReleaseDate() );
+        gamesWithoutGenresTo.setTitle( gamesModel.getTitle() );
 
         return gamesWithoutGenresTo;
     }

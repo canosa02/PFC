@@ -10,7 +10,14 @@ import com.jorgea.PFC.repository.GamesRepository;
 import com.jorgea.PFC.repository.GenresInGamesRepository;
 import com.jorgea.PFC.repository.GenresRepository;
 import com.jorgea.PFC.specification.GamesSpecification;
-import com.jorgea.PFC.to.*;
+import com.jorgea.PFC.to.GamesGenresTo;
+import com.jorgea.PFC.to.GamesPostTo;
+import com.jorgea.PFC.to.GamesPutTo;
+import com.jorgea.PFC.to.GamesPatchTo;
+import com.jorgea.PFC.to.GamesWithoutGenresTo;
+import com.jorgea.PFC.to.GenresNameTo;
+import com.jorgea.PFC.to.PageResponseTo;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;

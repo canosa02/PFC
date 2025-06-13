@@ -1,6 +1,8 @@
 package com.jorgea.PFC.dto;
 
 import com.jorgea.PFC.validation.StringNotBlank;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
 
 import java.math.BigDecimal;
 
@@ -10,6 +12,8 @@ public class CreateReviewsDto {
     @StringNotBlank
     private String reviewText;
 
+    @DecimalMin(value = "0.0", message = "Rating must be at least 0")
+    @DecimalMax(value = "10.0", message = "Rating must not exceed 10")
     private BigDecimal rating;
 
     public CreateReviewsDto() {

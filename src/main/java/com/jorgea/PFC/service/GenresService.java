@@ -1,10 +1,8 @@
 package com.jorgea.PFC.service;
 
-import com.jorgea.PFC.dto.GenresWithoutGamesDto;
 import com.jorgea.PFC.to.GenresNameTo;
 import com.jorgea.PFC.to.GenresWithoutGamesTo;
 import com.jorgea.PFC.to.PageResponseTo;
-import io.swagger.v3.oas.annotations.servers.Server;
 import org.springframework.data.domain.Pageable;
 
 public interface GenresService {
